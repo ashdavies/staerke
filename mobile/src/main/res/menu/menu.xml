@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <item
+        android:id="@+id/log"
+        android:showAsAction="always"
+        android:title="@string/activity_log"/>
+
+</menu>

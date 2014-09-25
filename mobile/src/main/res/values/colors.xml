@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="background">#E5E5E5</color>
+    <color name="foreground">#F5F5F5</color>
+    
+    <color name="primary">#3F51B5</color>
+    <color name="primary_highlight">#C5CAE9</color>
+    <color name="primary_lowlight">#303F9F</color>
+    
+    <color name="accent">#FF4081</color>
+    <color name="accent_highlight">#FF80AB</color>
+    <color name="accent_lowlight">#F50057</color>
+    
+    <color name="dividers">#1E000000</color>
+    <color name="hint_text">#42000000</color>
+    <color name="secondary_text">#89000000</color>
+    <color name="primary_text">#DD000000</color>
+    
+</resources>

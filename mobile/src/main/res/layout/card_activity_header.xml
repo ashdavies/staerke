@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal"
+  android:paddingBottom="5dip">
+
+  <Button
+    android:id="@+id/start"
+    android:background="@color/accent"
+    android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin"
+    android:layout_weight="1"
+    android:drawableLeft="@drawable/ic_action_play"
+    android:gravity="center"
+    android:fontFamily="sans-serif-condensed"
+    android:textColor="@android:color/white"
+    android:text="@string/action_start_workout"
+    android:padding="@dimen/padding"
+    android:visibility="visible"
+    style="?android:attr/buttonBarButtonStyle" />
+
+  <Button
+    android:id="@+id/pause"
+    android:background="@color/accent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin"
+    android:layout_weight="1"
+    android:drawableLeft="@drawable/ic_action_pause"
+    android:gravity="center"
+    android:fontFamily="sans-serif-condensed"
+    android:textColor="@android:color/white"
+    android:text="@string/action_pause_workout"
+    android:padding="@dimen/padding"
+    android:visibility="gone"
+    style="?android:attr/buttonBarButtonStyle" />
+
+  <Button
+    android:id="@+id/resume"
+    android:background="@color/accent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin"
+    android:layout_weight="1"
+    android:drawableLeft="@drawable/ic_action_play"
+    android:gravity="center"
+    android:fontFamily="sans-serif-condensed"
+    android:textColor="@android:color/white"
+    android:text="@string/action_resume_workout"
+    android:padding="@dimen/padding"
+    android:visibility="gone"
+    style="?android:attr/buttonBarButtonStyle" />
+
+  <Button
+    android:id="@+id/stop"
+    android:background="@color/accent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin"
+    android:layout_weight="1"
+    android:drawableLeft="@drawable/ic_action_stop"
+    android:gravity="center"
+    android:fontFamily="sans-serif-condensed"
+    android:textColor="@android:color/white"
+    android:text="@string/action_stop_workout"
+    android:padding="@dimen/padding"
+    android:visibility="gone"
+    style="?android:attr/buttonBarButtonStyle" />
+
+</LinearLayout>

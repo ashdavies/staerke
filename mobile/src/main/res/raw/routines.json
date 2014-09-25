@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Chest Strength",
+        "description": "Strength excercises for chest and triceps",
+        "category": "Strength"
+    },
+    {
+        "id": 2,
+        "name": "Leg Strength",
+        "description": "Strength excercises for legs",
+        "category": "Strength"
+    },
+    {
+        "id": 3,
+        "name": "Upper Back Strength",
+        "description": "Strength excercises for upper back and biceps",
+        "category": "Strength"
+    },
+    {
+        "id": 4,
+        "name": "General Strength",
+        "description": "General strength excercises",
+        "category": "Strength"
+    }
+]

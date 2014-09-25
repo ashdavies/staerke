@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:background="@color/foreground"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="${relativePackage}.${activityClass}">
+
+  <ListView
+    android:id="@+id/cards"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+  <ImageButton
+    android:id="@+id/create"
+    android:contentDescription="@string/description"
+    android:background="@drawable/floating_button"
+    android:layout_width="@dimen/floating_button_size"
+    android:layout_height="@dimen/floating_button_size"
+    android:layout_margin="@dimen/floating_button_margin"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:src="@drawable/ic_action_content_edit" />
+
+</RelativeLayout>

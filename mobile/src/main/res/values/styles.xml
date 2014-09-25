@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!--
+    Base Application Theme
+  -->
+  <style name="Theme.Starke" parent="@android:style/Theme.Holo.Light">
+      <item name="android:actionMenuTextColor">@android:color/white</item>
+      <item name="android:actionBarStyle">@style/ActionBar.Starke.Solid</item>
+      <item name="android:windowActionBarOverlay">false</item>
+  </style>
+
+  <!--
+    Application Overlay Action Bar Theme
+  -->
+  <style name="Theme.Starke.Overlay" parent="@android:style/Theme.Holo.Light">
+      <item name="android:actionBarStyle">@style/ActionBar.Starke.Transparent</item>
+      <item name="android:windowActionBarOverlay">true</item>
+  </style>
+
+  <!--
+    Solid Action Bar Theme
+  -->
+  <style name="ActionBar.Starke.Solid" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+      <item name="android:background">@color/primary</item>
+      <item name="android:height">@dimen/action_bar_height</item>
+      <item name="android:titleTextStyle">@style/ActionBar.Starke.TitleText</item>
+  </style>
+
+  <!--
+    Transparent Action Bar Theme
+  -->
+  <style name="ActionBar.Starke.Transparent" parent="@android:style/Widget.Holo.Light.ActionBar">
+      <item name="android:background">@android:color/transparent</item>
+      <item name="android:height">@dimen/action_bar_height</item>
+      <item name="android:titleTextStyle">@style/ActionBar.Starke.TitleText</item>
+  </style>
+
+  <!--
+    Action Bar Title Text
+  -->
+  <style name="ActionBar.Starke.TitleText" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+      <item name="android:textColor">@android:color/white</item>
+  </style>
+
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="application">Starke</string>
+    <string name="description">Starke Fitness Tracker</string>
+
+    <string name="activity_routine">Routines</string>
+    <string name="activity_routine_detail">Activities</string>
+    <string name="activity_log">Log</string>
+
+    <string name="fragment_title_favourites">My Routines</string>
+
+    <string name="notification_tracking_workout">Tracking Workout</string>
+    <string name="notification_tracking_workout_text">Starke is tracking your workout</string>
+
+    <string name="dialog_create_routine_title">Create Routine</string>
+    <string name="dialog_create_routine_name">Routine Name</string>
+
+    <string name="dialog_edit_activity_title">Edit Activity</string>
+    <string name="dialog_create_activity_title">Add Activity</string>
+    <string name="dialog_create_activity_name">Name</string>
+    <string name="dialog_create_activity_weight">Weight (Kg)</string>
+    <string name="dialog_create_activity_repetitions">Reps</string>
+    <string name="dialog_create_activity_sets">Sets</string>
+
+    <string name="dialog_log_activity">Log Activity</string>
+    <string name="dialog_log_activity_message">Are you sure you want to log this activity?</string>
+
+    <string name="action_add">Add</string>
+    <string name="action_added">Action Added</string>
+    <string name="action_edit">Edit Activity</string>
+    <string name="action_create">Create</string>
+    <string name="action_cancel">Cancel</string>
+
+    <string name="action_start_workout">Start Workout</string>
+    <string name="action_pause_workout">Pause Workout</string>
+    <string name="action_resume_workout">Resume Workout</string>
+    <string name="action_stop_workout">Stop Workout</string>
+
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+	<array name="activities">
+    	<item>Abdominal Crunch</item>
+        <item>Back Extension</item>
+        <item>Bench Press</item>
+        <item>Bent Over Row</item>
+        <item>Bicep Curl</item>
+        <item>Calf Press</item>
+        <item>Chest Press</item>
+        <item>Converging Chest Press</item>
+        <item>Converging Shoulder Press</item>
+        <item>Deadlift</item>
+        <item>Dip and Chin Assist</item>
+        <item>Diverging Lat Pulldown</item>
+        <item>Diverging Seated Row</item>
+        <item>Hip Abductor</item>
+        <item>Hip Adductor</item>
+        <item>Hip Thrust</item>
+        <item>Incline Chest Press</item>
+        <item>Incline Shoulder Press</item>
+        <item>Lat Pulldown</item>
+        <item>Lateral Raise</item>
+        <item>Leg Extension</item>
+        <item>Leg Press</item>
+        <item>Pectoral Fly</item>
+        <item>Pyramid Seated Row</item>
+        <item>Rear Delt</item>
+        <item>Rear Fly</item>
+        <item>Rotary Hip</item>
+        <item>Rotary Torso</item>
+        <item>Seated Calf Raises</item>
+        <item>Seated Dip</item>
+        <item>Seated Leg Curl</item>
+        <item>Seated Row</item>
+        <item>Shoulder Press</item>
+        <item>Single Arm Row</item>
+        <item>Standing Calf Raise</item>
+        <item>Squats</item>
+        <item>Triceps Extension</item>
+        <item>Upright Row</item>
+        <item>Weighted Pull Up</item>
+    </array>
+
+</resources>
