@@ -1,4 +1,4 @@
-package com.chaos.starke;
+package com.chaos.starke.adapters;
 
 import android.graphics.drawable.Drawable;
 import android.test.AndroidTestCase;

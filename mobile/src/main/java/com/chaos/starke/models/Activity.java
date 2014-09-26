@@ -1,8 +1,8 @@
-package com.chaos.starke.db;
+package com.chaos.starke.models;
 
 import com.orm.SugarRecord;
 
-public class RoutineActivity extends SugarRecord<com.chaos.starke.db.RoutineActivity> {
+public class Activity extends SugarRecord<Activity> {
 
     public String name;
     public String description;
@@ -15,12 +15,12 @@ public class RoutineActivity extends SugarRecord<com.chaos.starke.db.RoutineActi
     public int repetitions;
     public int weight;
 
-    public com.chaos.starke.db.Routine routine;
+    public Routine routine;
 
-    public RoutineActivity() {
+    public Activity() {
     }
 
-    public RoutineActivity(String name, int sets, int repetitions, int weight) {
+    public Activity(String name, int sets, int repetitions, int weight) {
 
         this.name = name;
         this.sets = sets;

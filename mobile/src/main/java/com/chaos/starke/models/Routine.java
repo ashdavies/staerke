@@ -1,4 +1,4 @@
-package com.chaos.starke.db;
+package com.chaos.starke.models;
 
 import com.orm.SugarRecord;
 

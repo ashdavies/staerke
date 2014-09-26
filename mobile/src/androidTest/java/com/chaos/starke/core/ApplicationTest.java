@@ -1,4 +1,4 @@
-package com.chaos.starke;
+package com.chaos.starke.core;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
