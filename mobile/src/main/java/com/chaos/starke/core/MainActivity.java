@@ -11,10 +11,7 @@ import com.chaos.starke.R;
 import com.chaos.starke.adapters.RoutineAdapter;
 import com.chaos.starke.dialogs.CreateRoutineDialog;
 import com.chaos.starke.models.Routine;
-import com.google.gson.Gson;
-import com.orm.query.Select;
 
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,19 +30,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         setContentView(R.layout.activity_routine);
 
         List<String> items = new LinkedList<String>(Arrays.asList(new String[]{"My Routines"}));
-
         for (Routine.Category category : Routine.Category.values()) items.add(category.name());
-
-        if (Routine.count(Routine.class, null, null) == 0) {
-            Gson gson = new Gson();
-            InputStreamReader routines = new InputStreamReader(getResources().openRawResource(R.raw.routines));
-            for (Routine routine : gson.fromJson(routines, Routine[].class)) routine.save();
-        }
 
         ImageButton create = (ImageButton) findViewById(R.id.create);
         create.setOnClickListener(this);
 
-        List<Routine> routines = Select.from(Routine.class).where("favourite = 1").orderBy("name").list();
+        //List<Routine> routines = Select.from(Routine.class).where("favourite = 1").orderBy("name").list();
+        List<Routine> routines = Routine.listAll(Routine.class);
         adapter = new RoutineAdapter(context, routines);
         list = (ListView) findViewById(R.id.cards);
         list.setOnItemClickListener(adapter);
