@@ -7,6 +7,8 @@ public class Activity extends SugarRecord<Activity> {
     public String name;
     public String description;
 
+    public Routine routine;
+
     public Rating rating;
 
     public enum Rating {Novice, Beginner, Intermediate, Advanced, Hardcode}
@@ -14,8 +16,6 @@ public class Activity extends SugarRecord<Activity> {
     public int sets;
     public int repetitions;
     public int weight;
-
-    public Routine routine;
 
     public Activity() {
     }
