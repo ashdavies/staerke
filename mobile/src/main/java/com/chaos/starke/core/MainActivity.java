@@ -26,10 +26,8 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity implements OnClickListener, AdapterView.OnItemClickListener {
 
-    final MainActivity context = this;
-
-    private RoutineAdapter adapter;
-    private ListView list;
+    private RoutineAdapter routineAdapter;
+    private ListView routineList;
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -40,29 +38,34 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<String> items = new LinkedList<String>(Arrays.asList(new String[]{"My Routines"}));
-        for (Routine.Category category : Routine.Category.values()) items.add(category.name());
-
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        drawerList = (ListView)findViewById(R.id.navigation_drawer);
-        drawerList.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items));
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerList = (ListView) findViewById(R.id.navigation_drawer);
+        drawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getCategories()));
         drawerList.setOnItemClickListener(this);
 
-        if (Routine.count(Routine.class,null,null) == 0) {
-            Gson gson = new Gson();
-            InputStreamReader routines = new InputStreamReader(getResources().openRawResource(R.raw.routine));
-            for (Routine routine : gson.fromJson(routines, Routine[].class)) routine.save();
+        if (Routine.count(Routine.class, null, null) == 0) {
+            importRoutines();
         }
 
         ImageButton create = (ImageButton) findViewById(R.id.create);
         create.setOnClickListener(this);
 
-        List<Routine> routines = Routine.listAll(Routine.class);
-        adapter = new RoutineAdapter(context, routines);
-        list = (ListView) findViewById(R.id.routines);
-        list.setOnItemClickListener(adapter);
-        list.setAdapter(adapter);
+        routineAdapter = new RoutineAdapter(this, Routine.listAll(Routine.class));
+        routineList = (ListView) findViewById(R.id.routines);
+        routineList.setOnItemClickListener(routineAdapter);
+        routineList.setAdapter(routineAdapter);
+    }
 
+    private List<String> getCategories() {
+        List<String> items = new LinkedList<String>(Arrays.asList(new String[]{"My Routines"}));
+        for (Routine.Category category : Routine.Category.values()) items.add(category.name());
+        return items;
+    }
+
+    private void importRoutines() {
+        Gson gson = new Gson();
+        InputStreamReader routines = new InputStreamReader(getResources().openRawResource(R.raw.routine));
+        for (Routine routine : gson.fromJson(routines, Routine[].class)) routine.save();
     }
 
     @Override
@@ -93,7 +96,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         switch (item.getItemId()) {
 
             case R.id.log:
-                context.startActivity(new Intent(context, ActionActivity.class));
+                startActivity(new Intent(this, ActionActivity.class));
                 return true;
 
             default:
