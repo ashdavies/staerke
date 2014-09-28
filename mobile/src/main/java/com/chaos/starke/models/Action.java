@@ -2,8 +2,6 @@ package com.chaos.starke.models;
 
 import com.orm.SugarRecord;
 
-import java.util.Date;
-
 public class Action extends SugarRecord<Action> {
 
     public String name;
@@ -24,7 +22,7 @@ public class Action extends SugarRecord<Action> {
         this.repetitions = activity.repetitions;
         this.sets = activity.sets;
 
-        date = new Date().getTime();
+        this.date = System.currentTimeMillis();
 
     }
 }
