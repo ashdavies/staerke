@@ -9,9 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- The main content view -->
     <FrameLayout
-      android:id="@+id/content_frame"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
@@ -35,12 +33,22 @@
       <ListView
         android:id="@+id/routines"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content" />
+
+      <ImageButton
+        android:id="@+id/create"
+        android:contentDescription="@string/description"
+        android:background="@drawable/floating_button"
+        android:layout_width="@dimen/floating_button_size"
+        android:layout_height="@dimen/floating_button_size"
+        android:layout_margin="@dimen/floating_button_margin"
+        android:layout_gravity="right|bottom"
+        android:src="@drawable/ic_action_content_edit" />
+
     </FrameLayout>
 
-    <!-- The navigation drawer -->
     <ListView
-      android:id="@+id/left_drawer"
+      android:id="@+id/navigation_drawer"
       android:layout_width="240dp"
       android:layout_height="match_parent"
       android:layout_gravity="start"
