@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.chaos.starke.actions.ActionItem;
+
 import java.util.List;
 
 public class ActionAdapter extends ArrayAdapter<ActionItem> {
