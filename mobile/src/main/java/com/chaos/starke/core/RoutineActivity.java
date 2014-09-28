@@ -27,15 +27,12 @@ public class RoutineActivity extends FragmentActivity implements OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_routine_detail);
+        setContentView(R.layout.activity_routine);
 
         Intent intent = getIntent();
         routine = Routine.findById(Routine.class, intent.getLongExtra("routine", 0));
 
         list = (ListView) findViewById(R.id.cards);
-        header = getLayoutInflater().inflate(R.layout.card_activity_header, list, false);
-
-        list.addHeaderView(header);
         adapter = new ActivityAdapter(context, Activity.find(Activity.class, "routine = ?", new String[]{routine.getId().toString()}));
 
         list.setAdapter(adapter);

@@ -32,9 +32,4 @@
     <string name="action_create">Create</string>
     <string name="action_cancel">Cancel</string>
 
-    <string name="action_start_workout">Start Workout</string>
-    <string name="action_pause_workout">Pause Workout</string>
-    <string name="action_resume_workout">Resume Workout</string>
-    <string name="action_stop_workout">Stop Workout</string>
-
 </resources>
