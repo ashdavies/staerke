@@ -24,6 +24,7 @@
   <style name="ActionBar.Starke.Solid" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
       <item name="android:background">@color/primary</item>
       <item name="android:height">@dimen/action_bar_height</item>
+      <item name="android:icon">@drawable/ic_dumbbell</item>
       <item name="android:titleTextStyle">@style/ActionBar.Starke.TitleText</item>
   </style>
 
@@ -33,6 +34,7 @@
   <style name="ActionBar.Starke.Transparent" parent="@android:style/Widget.Holo.Light.ActionBar">
       <item name="android:background">@android:color/transparent</item>
       <item name="android:height">@dimen/action_bar_height</item>
+      <item name="android:icon">@drawable/ic_dumbbell</item>
       <item name="android:titleTextStyle">@style/ActionBar.Starke.TitleText</item>
   </style>
 

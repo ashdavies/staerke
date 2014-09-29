@@ -5,7 +5,7 @@
 
   <application
     android:allowBackup="true"
-    android:icon="@drawable/ic_launcher_square"
+    android:icon="@drawable/ic_launcher_circle"
     android:label="@string/application"
     android:name="com.orm.SugarApp"
     android:theme="@style/Theme.Starke"
@@ -26,7 +26,6 @@
 
     <activity
       android:name=".core.MainActivity"
-      android:icon="@drawable/ic_dumbbell"
       android:label="@string/application">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
