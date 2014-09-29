@@ -19,18 +19,16 @@ import com.chaos.starke.models.Routine;
 import com.google.gson.Gson;
 
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends FragmentActivity implements OnClickListener, AdapterView.OnItemClickListener {
 
     private static int NO_ROUTINES = 0;
 
-    private RoutineAdapter routineAdapter = new RoutineAdapter(this);
-    private List<Routine> routineList = new ArrayList<Routine>();
+    private RoutineAdapter routineAdapter;
     private ListView routineListView;
 
-    private NavigationAdapter navigationAdapter = new NavigationAdapter(this);
+    private NavigationAdapter navigationAdapter;
     private ListView drawerList;
 
     private ImageButton createRoutine;
@@ -41,10 +39,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        navigationAdapter = new NavigationAdapter(this);
         drawerList = (ListView) findViewById(R.id.navigation_drawer);
         drawerList.setAdapter(navigationAdapter);
         drawerList.setOnItemClickListener(this);
 
+        routineAdapter = new RoutineAdapter(this);
         routineListView = (ListView) findViewById(R.id.routines);
         routineListView.setOnItemClickListener(routineAdapter);
         routineListView.setAdapter(routineAdapter);
