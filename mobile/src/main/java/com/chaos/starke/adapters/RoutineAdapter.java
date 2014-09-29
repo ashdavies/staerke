@@ -26,14 +26,14 @@ import com.chaos.starke.R;
 import com.chaos.starke.core.RoutineActivity;
 import com.chaos.starke.models.Routine;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClickListener {
 
     private Context context;
 
-    public RoutineAdapter(Context context, List<Routine> routines) {
-        super(context, R.layout.card_routine, routines);
+    public RoutineAdapter(Context context) {
+        super(context, R.layout.card_routine, new ArrayList<Routine>());
         this.context = context;
     }
 

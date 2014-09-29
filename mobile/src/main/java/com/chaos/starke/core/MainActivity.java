@@ -3,34 +3,37 @@ package com.chaos.starke.core;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.chaos.starke.R;
+import com.chaos.starke.adapters.NavigationAdapter;
 import com.chaos.starke.adapters.RoutineAdapter;
 import com.chaos.starke.dialogs.CreateRoutineDialog;
 import com.chaos.starke.models.Routine;
 import com.google.gson.Gson;
 
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends FragmentActivity implements OnClickListener, AdapterView.OnItemClickListener {
 
-    private RoutineAdapter routineAdapter;
-    private ListView routineList;
+    private static int NO_ROUTINES = 0;
 
-    private DrawerLayout drawerLayout;
+    private RoutineAdapter routineAdapter = new RoutineAdapter(this);
+    private List<Routine> routineList = new ArrayList<Routine>();
+    private ListView routineListView;
+
+    private NavigationAdapter navigationAdapter = new NavigationAdapter(this);
     private ListView drawerList;
+
+    private ImageButton createRoutine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,36 +41,60 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.navigation_drawer);
-        drawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getCategories()));
+        drawerList.setAdapter(navigationAdapter);
         drawerList.setOnItemClickListener(this);
 
-        if (Routine.count(Routine.class, null, null) == 0) {
-            importRoutines();
+        routineListView = (ListView) findViewById(R.id.routines);
+        routineListView.setOnItemClickListener(routineAdapter);
+        routineListView.setAdapter(routineAdapter);
+
+        createRoutine = (ImageButton) findViewById(R.id.create);
+        createRoutine.setOnClickListener(this);
+
+        populateNavigationFromCategories();
+        populateRoutinesFromFavourites();
+
+        if (hasExistingRoutines() == false) {
+            importRoutinesFromRawResource();
+            populateRoutinesFromFavourites();
         }
 
-        ImageButton create = (ImageButton) findViewById(R.id.create);
-        create.setOnClickListener(this);
-
-        routineAdapter = new RoutineAdapter(this, Routine.listAll(Routine.class));
-        routineList = (ListView) findViewById(R.id.routines);
-        routineList.setOnItemClickListener(routineAdapter);
-        routineList.setAdapter(routineAdapter);
     }
 
-    private List<String> getCategories() {
-        List<String> items = new LinkedList<String>(Arrays.asList(new String[]{"My Routines"}));
-        for (Routine.Category category : Routine.Category.values()) items.add(category.name());
-        return items;
+    // TODO Should be a method of navigation adapter
+    private void populateNavigationFromCategories() {
+        Routine.Category[] categories = Routine.Category.values();
+        for (Routine.Category category : categories) navigationAdapter.add(category.name());
     }
 
-    private void importRoutines() {
+    // TODO Should be a method of routine adapter
+    public void populateRoutinesFromFavourites() {
+        List<Routine> routines = Routine.find(Routine.class, "favourite = ?", "1");
+        for (Routine routine : routines) routineAdapter.add(routine);
+    }
+
+    // TODO Should be a method of routine adapter
+    public void populateRoutinesFromCategory(Routine.Category category) {
+        List<Routine> routines = Routine.find(Routine.class, "category = ?", category.name());
+        for (Routine routine : routines) routineAdapter.add(routine);
+    }
+
+    public boolean hasExistingRoutines() {
+        return routineAdapter.getCount() != NO_ROUTINES;
+    }
+
+    public void clearRoutines() {
+        routineAdapter.clear();
+    }
+
+    private void importRoutinesFromRawResource() {
         Gson gson = new Gson();
         InputStreamReader routines = new InputStreamReader(getResources().openRawResource(R.raw.routine));
         for (Routine routine : gson.fromJson(routines, Routine[].class)) routine.save();
     }
 
+    // TODO On click listener should not contain switch
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -80,6 +107,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         }
     }
 
+    // TODO Should be method of adapter
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
@@ -91,6 +119,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         return true;
     }
 
+    // TODO Should be implemented as a navigation interface
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
