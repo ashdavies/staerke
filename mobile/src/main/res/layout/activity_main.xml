@@ -35,13 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-      <ImageButton
+      <com.shamanland.fab.FloatingActionButton
         android:id="@+id/create"
-        android:contentDescription="@string/description"
-        android:background="@drawable/floating_button"
-        android:layout_width="@dimen/floating_button_size"
-        android:layout_height="@dimen/floating_button_size"
-        android:layout_margin="@dimen/floating_button_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:src="@drawable/ic_action_content_edit" />
 
@@ -49,13 +46,14 @@
 
     <ListView
       android:id="@+id/navigation_drawer"
-      android:layout_width="@dimen/navigation_drawer_width"
+      android:background="@color/background"
+      android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:layout_marginRight="@dimen/navigation_drawer_right_margin"
       android:layout_gravity="start"
       android:choiceMode="singleChoice"
       android:divider="@android:color/transparent"
-      android:dividerHeight="0dp"
-      android:background="@color/background" />
+      android:dividerHeight="0dp" />
 
   </android.support.v4.widget.DrawerLayout>
 
