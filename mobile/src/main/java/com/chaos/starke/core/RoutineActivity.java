@@ -9,7 +9,6 @@ import android.widget.ListView;
 
 import com.chaos.starke.R;
 import com.chaos.starke.adapters.ActivityAdapter;
-import com.chaos.starke.dialogs.CreateActivityDialog;
 import com.chaos.starke.models.Activity;
 import com.chaos.starke.models.Routine;
 
@@ -46,11 +45,11 @@ public class RoutineActivity extends FragmentActivity implements OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
 
-            case R.id.create:
+            /*case R.id.create:
 
                 CreateActivityDialog dialog = new CreateActivityDialog(routine, null);
                 dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
-                return;
+                return;        */
 
         }
     }

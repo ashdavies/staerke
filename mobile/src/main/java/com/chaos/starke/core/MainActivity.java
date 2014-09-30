@@ -18,7 +18,6 @@ import android.widget.ListView;
 import com.chaos.starke.R;
 import com.chaos.starke.adapters.NavigationAdapter;
 import com.chaos.starke.adapters.RoutineAdapter;
-import com.chaos.starke.dialogs.CreateRoutineDialog;
 import com.chaos.starke.models.Routine;
 import com.google.gson.Gson;
 
@@ -64,8 +63,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         routineListView.setOnItemClickListener(routineAdapter);
         routineListView.setAdapter(routineAdapter);
 
-        createRoutine = (ImageButton) findViewById(R.id.create);
-        createRoutine.setOnClickListener(this);
+        //createRoutine = (ImageButton) findViewById(R.id.create);
+        //createRoutine.setOnClickListener(this);
 
         populateNavigationFromCategories();
         populateRoutinesFromFavourites();
@@ -122,10 +121,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
     public void onClick(View view) {
         switch (view.getId()) {
 
-            case R.id.create:
+            /*case R.id.create:
                 CreateRoutineDialog dialog = new CreateRoutineDialog();
                 dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
-                return;
+                return;*/
 
         }
     }
