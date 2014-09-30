@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.chaos.starke.R;
@@ -20,6 +19,8 @@ import com.chaos.starke.adapters.NavigationAdapter;
 import com.chaos.starke.adapters.RoutineAdapter;
 import com.chaos.starke.models.Routine;
 import com.google.gson.Gson;
+import com.shamanland.fab.FloatingActionButton;
+import com.shamanland.fab.ShowHideOnScroll;
 
 import java.io.InputStreamReader;
 import java.util.List;
@@ -36,7 +37,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
     private DrawerLayout navigationLayout;
     private ListView navigationList;
 
-    private ImageButton createRoutine;
+    private FloatingActionButton createRoutine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +59,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
                 R.string.application, R.string.application);
         navigationLayout.setDrawerListener(navigationToggle);
 
+        createRoutine = (FloatingActionButton) findViewById(R.id.create);
+        createRoutine.setOnClickListener(this);
+
         routineAdapter = new RoutineAdapter(this);
         routineListView = (ListView) findViewById(R.id.routines);
         routineListView.setOnItemClickListener(routineAdapter);
         routineListView.setAdapter(routineAdapter);
-
-        //createRoutine = (ImageButton) findViewById(R.id.create);
-        //createRoutine.setOnClickListener(this);
+        routineListView.setOnTouchListener(new ShowHideOnScroll(createRoutine));
 
         populateNavigationFromCategories();
         populateRoutinesFromFavourites();
