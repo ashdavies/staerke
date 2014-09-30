@@ -7,7 +7,7 @@
     android:id="@+id/name"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin" />
+    android:layout_margin="@dimen/standard_margin" />
 
   <LinearLayout
     android:id="@+id/labels"
@@ -25,7 +25,7 @@
       <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin"
+        android:layout_margin="@dimen/standard_margin"
         android:gravity="center"
         android:text="@string/dialog_create_activity_weight" />
 
@@ -33,7 +33,7 @@
         android:id="@+id/weight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin"
+        android:layout_margin="@dimen/standard_margin"
         android:gravity="center" />
 
     </RelativeLayout>
@@ -46,7 +46,7 @@
       <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin"
+        android:layout_margin="@dimen/standard_margin"
         android:gravity="center"
         android:text="@string/dialog_create_activity_repetitions" />
 
@@ -54,7 +54,7 @@
         android:id="@+id/repetitions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin"
+        android:layout_margin="@dimen/standard_margin"
         android:gravity="center" />
 
     </RelativeLayout>
@@ -67,7 +67,7 @@
       <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin"
+        android:layout_margin="@dimen/standard_margin"
         android:gravity="center"
         android:text="@string/dialog_create_activity_sets" />
 
@@ -75,7 +75,7 @@
         android:id="@+id/sets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin"
+        android:layout_margin="@dimen/standard_margin"
         android:gravity="center" />
 
     </RelativeLayout>
