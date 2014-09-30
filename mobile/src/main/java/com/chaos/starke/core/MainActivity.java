@@ -84,10 +84,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         return routineAdapter.getCount() != NO_ROUTINES;
     }
 
-    public void clearRoutines() {
-        routineAdapter.clear();
-    }
-
     private void importRoutinesFromRawResource() {
         Gson gson = new Gson();
         InputStreamReader routines = new InputStreamReader(getResources().openRawResource(R.raw.routine));
