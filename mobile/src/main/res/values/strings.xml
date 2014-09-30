@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="application">Starke</string>
-    <string name="description">Starke Fitness Tracker</string>
+    <string name="application">Starke Trainer</string>
+    <string name="description">Strength Training and Fitness Tracker</string>
 
     <string name="activity_routine">Routines</string>
     <string name="activity_routine_detail">Activities</string>
