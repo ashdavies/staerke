@@ -1,8 +1,12 @@
 package com.chaos.starke.core;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +33,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
     private ListView routineListView;
 
     private NavigationAdapter navigationAdapter;
-    private ListView drawerList;
+    private ActionBarDrawerToggle navigationToggle;
+    private DrawerLayout navigationLayout;
+    private ListView navigationList;
 
     private ImageButton createRoutine;
 
@@ -39,10 +45,19 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+
         navigationAdapter = new NavigationAdapter(this);
-        drawerList = (ListView) findViewById(R.id.navigation_drawer);
-        drawerList.setAdapter(navigationAdapter);
-        drawerList.setOnItemClickListener(this);
+        navigationList = (ListView) findViewById(R.id.navigation_drawer);
+        navigationList.setAdapter(navigationAdapter);
+        navigationList.setOnItemClickListener(this);
+
+        navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationToggle = new ActionBarDrawerToggle(this, navigationLayout, R.drawable.ic_navigation_drawer,
+                R.string.application, R.string.application);
+        navigationLayout.setDrawerListener(navigationToggle);
 
         routineAdapter = new RoutineAdapter(this);
         routineListView = (ListView) findViewById(R.id.routines);
@@ -60,6 +75,18 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
             populateRoutinesFromFavourites();
         }
 
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        navigationToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        navigationToggle.onConfigurationChanged(configuration);
     }
 
     // TODO Should be a method of navigation adapter
@@ -118,6 +145,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
     // TODO Should be implemented as a navigation interface
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (navigationToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         switch (item.getItemId()) {
 
             case R.id.log:
