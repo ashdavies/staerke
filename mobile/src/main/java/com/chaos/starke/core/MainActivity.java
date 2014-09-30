@@ -71,7 +71,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         populateNavigationFromCategories();
         populateRoutinesFromFavourites();
 
-        if (hasExistingRoutines() == false) {
+        if (!hasExistingRoutines()) {
             importRoutinesFromRawResource();
             populateRoutinesFromFavourites();
         }
