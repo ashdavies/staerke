@@ -44,7 +44,7 @@
 
     <activity
       android:name=".core.ActionActivity"
-      android:label="@string/application"
+      android:label="@string/activity_history"
       android:parentActivityName=".core.MainActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
