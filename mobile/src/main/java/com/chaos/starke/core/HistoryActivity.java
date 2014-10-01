@@ -28,7 +28,7 @@ public class HistoryActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log);
+        setContentView(R.layout.activity_history);
 
         SimpleDateFormat format = new SimpleDateFormat("cccc dd LLLL", Locale.GERMANY);
 
