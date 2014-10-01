@@ -6,7 +6,7 @@
 
     <string name="activity_routine">Routines</string>
     <string name="activity_routine_detail">Activities</string>
-    <string name="activity_log">Log</string>
+    <string name="activity_history">History</string>
 
     <string name="fragment_title_favourites">My Routines</string>
 
@@ -23,7 +23,7 @@
     <string name="dialog_create_activity_repetitions">Reps</string>
     <string name="dialog_create_activity_sets">Sets</string>
 
-    <string name="dialog_log_activity">Log Activity</string>
+    <string name="dialog_log_activity">History Activity</string>
     <string name="dialog_log_activity_message">Are you sure you want to log this activity?</string>
 
     <string name="action_add">Add</string>
