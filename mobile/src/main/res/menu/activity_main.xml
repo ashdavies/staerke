@@ -3,8 +3,8 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <item
-        android:id="@+id/log"
+        android:id="@+id/history"
         android:showAsAction="always"
-        android:title="@string/activity_log"/>
+        android:title="@string/activity_history"/>
 
 </menu>
