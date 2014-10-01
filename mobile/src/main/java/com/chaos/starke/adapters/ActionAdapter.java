@@ -6,22 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.chaos.starke.actions.ActionItem;
+import com.chaos.starke.adapters.items.ActionInterface;
 
 import java.util.List;
 
-public class ActionAdapter extends ArrayAdapter<ActionItem> {
+public class ActionAdapter extends ArrayAdapter<ActionInterface> {
 
     private LayoutInflater inflater;
 
-    public ActionAdapter(Context context, List<ActionItem> items) {
+    public ActionAdapter(Context context, List<ActionInterface> items) {
         super(context, 0, items);
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getViewTypeCount() {
-        return ActionItem.Row.values().length;
+        return ActionInterface.Row.values().length;
     }
 
     @Override

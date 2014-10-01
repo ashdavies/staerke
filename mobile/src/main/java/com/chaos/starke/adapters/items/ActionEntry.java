@@ -1,4 +1,4 @@
-package com.chaos.starke.actions;
+package com.chaos.starke.adapters.items;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import com.chaos.starke.models.Action;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class ActionEntry implements ActionItem {
+public class ActionEntry implements ActionInterface {
 
     private final Action routineAction;
 

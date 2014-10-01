@@ -4,8 +4,8 @@ import android.app.ListActivity;
 import android.os.Bundle;
 
 import com.chaos.starke.R;
-import com.chaos.starke.actions.ActionEntry;
-import com.chaos.starke.actions.ActionHeader;
+import com.chaos.starke.adapters.items.ActionEntry;
+import com.chaos.starke.adapters.items.ActionHeader;
 import com.chaos.starke.actions.ActionItem;
 import com.chaos.starke.adapters.ActionAdapter;
 import com.chaos.starke.models.Action;
