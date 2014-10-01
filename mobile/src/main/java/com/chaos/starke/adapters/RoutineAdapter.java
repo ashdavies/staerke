@@ -19,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaos.starke.R;
@@ -27,6 +26,8 @@ import com.chaos.starke.core.RoutineActivity;
 import com.chaos.starke.models.Routine;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClickListener {
 
@@ -46,9 +47,9 @@ public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClick
 
         final Routine routine = getItem(position);
 
-        ImageView thumb = (ImageView) convertView.findViewById(R.id.thumb);
+        CircleImageView thumbnail = (CircleImageView) convertView.findViewById(R.id.thumbnail);
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), Thumbnail(routine.category));
-        thumb.setImageBitmap(getRoundBitmap(bitmap));
+        thumbnail.setImageBitmap(getRoundBitmap(bitmap));
 
         TextView name = (TextView) convertView.findViewById(R.id.name);
         name.setText(routine.name);
