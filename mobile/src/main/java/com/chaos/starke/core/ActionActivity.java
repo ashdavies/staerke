@@ -30,7 +30,7 @@ public class ActionActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
 
-        SimpleDateFormat format = new SimpleDateFormat("cccc dd LLLL", Locale.UK);
+        SimpleDateFormat format = new SimpleDateFormat("cccc dd LLLL", Locale.GERMANY);
 
         items = new ArrayList<ActionInterface>();
         List<Action> actions = Select.from(Action.class).orderBy("date DESC").list();
