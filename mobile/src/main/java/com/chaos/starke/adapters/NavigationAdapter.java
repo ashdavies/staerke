@@ -5,16 +5,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.chaos.starke.R;
+import com.chaos.starke.models.Routine;
+
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NavigationAdapter extends ArrayAdapter<String> {
 
     public NavigationAdapter(Context context) {
-        super(context, android.R.layout.simple_list_item_1,new ArrayList<String>());
+        super(context, R.layout.navigation_item, R.id.title, new ArrayList<String>());
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return super.getView(position, convertView, parent);
+
+        convertView = super.getView(position, convertView, parent);
+
+        Routine.Category category = Routine.Category.valueOf(getItem(position));
+        CircleImageView thumbnail = (CircleImageView) convertView.findViewById(R.id.thumbnail);
+        thumbnail.setImageResource(RoutineAdapter.Thumbnail(category));
+
+        return convertView;
+
     }
 }
