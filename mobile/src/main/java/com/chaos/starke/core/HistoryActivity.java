@@ -17,9 +17,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class ActionActivity extends ListActivity {
+public class HistoryActivity extends ListActivity {
 
-    final ActionActivity context = this;
+    final HistoryActivity context = this;
 
     private ActionAdapter adapter;
     private List<ActionInterface> items;

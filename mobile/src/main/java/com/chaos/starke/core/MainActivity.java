@@ -157,7 +157,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         switch (item.getItemId()) {
 
             case R.id.history:
-                startActivity(new Intent(this, ActionActivity.class));
+                startActivity(new Intent(this, HistoryActivity.class));
                 return true;
 
             default:
