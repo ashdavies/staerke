@@ -50,6 +50,7 @@ public class MainActivity extends FragmentActivity {
         navigationList = (ListView) findViewById(R.id.navigation_drawer);
         navigationList.setAdapter(navigationAdapter);
         navigationList.setOnItemClickListener(navigationAdapter);
+        navigationAdapter.addCategories(Routine.Category.values());
 
         navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationToggle = new ActionBarDrawerToggle(this, navigationLayout, R.drawable.ic_navigation_drawer,
@@ -71,14 +72,11 @@ public class MainActivity extends FragmentActivity {
         routineListView.setAdapter(routineAdapter);
         routineListView.setOnTouchListener(new ShowHideOnScroll(createRoutine));
 
-        navigationAdapter.addCategories(Routine.Category.values());
-        routineAdapter.addRoutinesFromFavourite();
+        for (Routine.Category category : Routine.Category.values())
+            routineAdapter.addRoutinesFromCategory(category);
 
         if (routineAdapter.getCount() == NO_ITEMS) {
             routineAdapter.importFromResource(new Gson(), R.raw.routine);
-            for (Routine.Category category : Routine.Category.values())
-                routineAdapter.addRoutinesFromCategory(category);
-
         }
     }
 
