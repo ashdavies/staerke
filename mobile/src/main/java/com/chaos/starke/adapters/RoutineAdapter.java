@@ -3,14 +3,7 @@ package com.chaos.starke.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,8 +17,11 @@ import android.widget.TextView;
 import com.chaos.starke.R;
 import com.chaos.starke.core.RoutineActivity;
 import com.chaos.starke.models.Routine;
+import com.google.gson.Gson;
 
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -48,8 +44,8 @@ public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClick
         final Routine routine = getItem(position);
 
         CircleImageView thumbnail = (CircleImageView) convertView.findViewById(R.id.thumbnail);
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), Thumbnail(routine.category));
-        thumbnail.setImageBitmap(getRoundBitmap(bitmap));
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), routine.category.getIcon());
+        thumbnail.setImageBitmap(bitmap);
 
         TextView name = (TextView) convertView.findViewById(R.id.name);
         name.setText(routine.name);
@@ -85,43 +81,19 @@ public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClick
 
     }
 
-    public static int Thumbnail(Routine.Category category) {
-        if (category == Routine.Category.Strength) {
-            return R.drawable.ic_strength;
-        } else if (category == Routine.Category.Health) {
-            return R.drawable.ic_health;
-        } else if (category == Routine.Category.Endurance) {
-            return R.drawable.ic_endurance;
-        } else if (category == Routine.Category.Performance) {
-            return R.drawable.ic_performance;
-        } else if (category == Routine.Category.Women) {
-            return R.drawable.ic_women;
-        } else {
-            return R.drawable.ic_launcher_square;
-        }
-
+    public void addRoutinesFromCategory(Routine.Category category) {
+        List<Routine> routines = Routine.find(Routine.class, "category = ?", category.name());
+        for (Routine routine : routines) add(routine);
     }
 
-    public static Bitmap getRoundBitmap(Bitmap bitmap) {
+    public void addRoutinesFromFavourite() {
+        List<Routine> routines = Routine.find(Routine.class, "favourite = ?", "1");
+        for (Routine routine : routines) add(routine);
+    }
 
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getWidth());
-        final RectF rectF = new RectF(rect);
-
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, bitmap.getWidth(), bitmap.getWidth(), paint);
-
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
-
-        return output;
-
+    public void importFromResource(Gson gson, int resource) {
+        InputStreamReader routines = new InputStreamReader(context.getResources().openRawResource(resource));
+        for (Routine routine : gson.fromJson(routines, Routine[].class)) routine.save();
     }
 
 }
