@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.chaos.starke.R;
@@ -23,12 +22,9 @@ import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
-import java.io.InputStreamReader;
-import java.util.List;
+public class MainActivity extends FragmentActivity implements OnClickListener {
 
-public class MainActivity extends FragmentActivity implements OnClickListener, AdapterView.OnItemClickListener {
-
-    private static int NO_ROUTINES = 0;
+    private static int NO_ITEMS = 0;
 
     private RoutineAdapter routineAdapter;
     private ListView routineListView;
@@ -53,7 +49,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         navigationAdapter = new NavigationAdapter(this);
         navigationList = (ListView) findViewById(R.id.navigation_drawer);
         navigationList.setAdapter(navigationAdapter);
-        navigationList.setOnItemClickListener(this);
+        navigationList.setOnItemClickListener(navigationAdapter);
 
         navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationToggle = new ActionBarDrawerToggle(this, navigationLayout, R.drawable.ic_navigation_drawer,
@@ -69,16 +65,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         routineListView.setAdapter(routineAdapter);
         routineListView.setOnTouchListener(new ShowHideOnScroll(createRoutine));
 
-        populateNavigationFromCategories();
-        populateRoutinesFromFavourites();
+        navigationAdapter.addCategories(Routine.Category.values());
+        routineAdapter.addRoutinesFromFavourite();
 
-        List<Routine> routines = Routine.listAll(Routine.class);
-        if (routines.size() == 0) {
-            importRoutinesFromRawResource();
-            routines = Routine.listAll(Routine.class);
+        if (routineAdapter.getCount() == NO_ITEMS) {
+            routineAdapter.importFromResource(new Gson(), R.raw.routine);
+            for (Routine.Category category : Routine.Category.values())
+                routineAdapter.addRoutinesFromCategory(category);
+
         }
-        for (Routine routine : routines) routineAdapter.add(routine);
-
     }
 
     @Override
@@ -93,34 +88,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
         navigationToggle.onConfigurationChanged(configuration);
     }
 
-    // TODO Should be a method of navigation adapter
-    private void populateNavigationFromCategories() {
-        Routine.Category[] categories = Routine.Category.values();
-        for (Routine.Category category : categories) navigationAdapter.add(category.name());
-    }
-
-    // TODO Should be a method of routine adapter
-    public void populateRoutinesFromFavourites() {
-        List<Routine> routines = Routine.find(Routine.class, "favourite = ?", "1");
-        for (Routine routine : routines) routineAdapter.add(routine);
-    }
-
-    // TODO Should be a method of routine adapter
-    public void populateRoutinesFromCategory(Routine.Category category) {
-        List<Routine> routines = Routine.find(Routine.class, "category = ?", category.name());
-        for (Routine routine : routines) routineAdapter.add(routine);
-    }
-
-    public boolean hasExistingRoutines() {
-        return routineAdapter.getCount() != NO_ROUTINES;
-    }
-
-    private void importRoutinesFromRawResource() {
-        Gson gson = new Gson();
-        InputStreamReader routines = new InputStreamReader(getResources().openRawResource(R.raw.routine));
-        for (Routine routine : gson.fromJson(routines, Routine[].class)) routine.save();
-    }
-
     // TODO On click listener should not contain switch
     @Override
     public void onClick(View view) {
@@ -132,12 +99,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener, A
                 return;
 
         }
-    }
-
-    // TODO Should be method of adapter
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
     }
 
     @Override
