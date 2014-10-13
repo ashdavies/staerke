@@ -67,6 +67,7 @@ public class MainActivity extends FragmentActivity {
         });
 
         routineAdapter = new RoutineAdapter(this);
+        routineAdapter.importFromResource(new Gson(), R.raw.routine);
         routineListView = (ListView) findViewById(R.id.routines);
         routineListView.setOnItemClickListener(routineAdapter);
         routineListView.setAdapter(routineAdapter);
@@ -75,9 +76,6 @@ public class MainActivity extends FragmentActivity {
         for (Routine.Category category : Routine.Category.values())
             routineAdapter.addRoutinesFromCategory(category);
 
-        if (routineAdapter.getCount() == NO_ITEMS) {
-            routineAdapter.importFromResource(new Gson(), R.raw.routine);
-        }
     }
 
     @Override
