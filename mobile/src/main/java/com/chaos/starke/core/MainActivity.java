@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
-public class MainActivity extends FragmentActivity implements OnClickListener {
+public class MainActivity extends FragmentActivity {
 
     private static int NO_ITEMS = 0;
 
@@ -57,7 +57,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         navigationLayout.setDrawerListener(navigationToggle);
 
         createRoutine = (FloatingActionButton) findViewById(R.id.create);
-        createRoutine.setOnClickListener(this);
+        createRoutine.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateRoutineDialog dialog = new CreateRoutineDialog();
+                dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
+            }
+        });
 
         routineAdapter = new RoutineAdapter(this);
         routineListView = (ListView) findViewById(R.id.routines);
@@ -86,19 +92,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     public void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
         navigationToggle.onConfigurationChanged(configuration);
-    }
-
-    // TODO On click listener should not contain switch
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-
-            case R.id.create:
-                CreateRoutineDialog dialog = new CreateRoutineDialog();
-                dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
-                return;
-
-        }
     }
 
     @Override
