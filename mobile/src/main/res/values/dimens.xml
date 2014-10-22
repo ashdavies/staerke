@@ -13,6 +13,8 @@
   <dimen name="navigation_item_height">48dip</dimen>
   <dimen name="navigation_drawer_right_margin">56dip</dimen>
 
+  <dimen name="dialog_standard_padding">24dip</dimen>
+
   <dimen name="floating_button_size">70dip</dimen>
   <dimen name="floating_button_margin">25dip</dimen>
 

@@ -13,7 +13,7 @@
     <string name="notification_tracking_workout">Tracking Workout</string>
     <string name="notification_tracking_workout_text">Starke is tracking your workout</string>
 
-    <string name="dialog_create_routine_title">Create Routine</string>
+    <string name="dialog_title_create_routine">Create Routine</string>
     <string name="dialog_create_routine_name">Routine Name</string>
 
     <string name="dialog_edit_activity_title">Edit Activity</string>
