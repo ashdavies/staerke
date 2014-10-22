@@ -24,7 +24,7 @@ import com.shamanland.fab.ShowHideOnScroll;
 
 public class MainActivity extends FragmentActivity {
 
-    private static int NO_ITEMS = 0;
+    private static final long NO_ROUTINES = 0;
 
     private RoutineAdapter routineAdapter;
     private ListView routineListView;
@@ -34,48 +34,67 @@ public class MainActivity extends FragmentActivity {
     private DrawerLayout navigationLayout;
     private ListView navigationList;
 
-    private FloatingActionButton createRoutine;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupActionBar();
+        setupFAB();
+        setupNavigation();
+        setupRoutines();
+    }
+
+    private void setupActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+    }
 
-        navigationAdapter = new NavigationAdapter(this);
-        navigationList = (ListView) findViewById(R.id.navigation_drawer);
-        navigationList.setAdapter(navigationAdapter);
-        navigationList.setOnItemClickListener(navigationAdapter);
-        navigationAdapter.addCategories(Routine.Category.values());
-
-        navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationToggle = new ActionBarDrawerToggle(this, navigationLayout, R.drawable.ic_navigation_drawer,
-                R.string.application, R.string.application);
-        navigationLayout.setDrawerListener(navigationToggle);
-
-        createRoutine = (FloatingActionButton) findViewById(R.id.create);
-        createRoutine.setOnClickListener(new OnClickListener() {
+    private void setupFAB() {
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.create);
+        floatingActionButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 CreateRoutineDialog dialog = new CreateRoutineDialog();
                 dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
             }
         });
+    }
 
+    private void setupNavigation() {
+        navigationAdapter = new NavigationAdapter(this);
+        navigationAdapter.addCategories(Routine.Category.values());
+
+        navigationList = (ListView) findViewById(R.id.navigation_drawer);
+        navigationList.setAdapter(navigationAdapter);
+        navigationList.setOnItemClickListener(navigationAdapter);
+
+        navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationToggle = new ActionBarDrawerToggle(this, navigationLayout, R.drawable.ic_navigation_drawer,
+                R.string.application, R.string.application);
+        navigationLayout.setDrawerListener(navigationToggle);
+    }
+
+    private void setupRoutines() {
         routineAdapter = new RoutineAdapter(this);
-        routineAdapter.importFromResource(new Gson(), R.raw.routine);
         routineListView = (ListView) findViewById(R.id.routines);
         routineListView.setOnItemClickListener(routineAdapter);
         routineListView.setAdapter(routineAdapter);
-        routineListView.setOnTouchListener(new ShowHideOnScroll(createRoutine));
+        routineListView.setOnTouchListener(new ShowHideOnScroll(floatingActionButton));
+
+        if (hasNoRoutines()) {
+            routineAdapter.importFromResource(new Gson(), R.raw.routines);
+        }
 
         for (Routine.Category category : Routine.Category.values())
             routineAdapter.addRoutinesFromCategory(category);
+    }
 
+    private boolean hasNoRoutines() {
+        return Routine.count(Routine.class, null, null) == NO_ROUTINES;
     }
 
     @Override
@@ -96,7 +115,6 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
 
-    // TODO Should be implemented as a navigation interface
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
