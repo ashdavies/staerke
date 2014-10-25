@@ -1,6 +1,5 @@
 package com.chaos.starke.core;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -41,19 +40,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setupActionBar();
-        setupFAB();
+        setupActionButton();
         setupNavigation();
         setupRoutines();
     }
 
-    private void setupActionBar() {
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-    }
-
-    private void setupFAB() {
+    private void setupActionButton() {
         floatingActionButton = (FloatingActionButton) findViewById(R.id.create);
         floatingActionButton.setOnClickListener(new OnClickListener() {
             @Override
