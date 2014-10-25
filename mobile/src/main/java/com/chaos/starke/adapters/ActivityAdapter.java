@@ -8,15 +8,17 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chaos.starke.R;
 import com.chaos.starke.core.RoutineActivity;
 import com.chaos.starke.dialogs.CreateActivityDialog;
+import com.chaos.starke.models.Action;
 import com.chaos.starke.models.Activity;
 
 import java.util.List;
 
-public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemClickListener {
+public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private Context context;
 
@@ -24,7 +26,7 @@ public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemCli
         super(context, R.layout.card_activity, activities);
         this.context = context;
     }
-    
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -46,13 +48,17 @@ public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        new Action(getItem(position)).save();
+        String message = getResources().getString(R.string.action_added);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
         final Activity activity = getItem(position);
-
         RoutineActivity routineActivity = (RoutineActivity) context;
         CreateActivityDialog dialog = new CreateActivityDialog(activity.routine, activity);
         dialog.show(routineActivity.getSupportFragmentManager(), dialog.getClass().getName());
-
+        return false;
     }
-
 }
