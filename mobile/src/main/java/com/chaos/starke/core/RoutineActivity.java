@@ -56,7 +56,6 @@ public class RoutineActivity extends ActionBarActivity implements OnClickListene
         activityListView.setOnItemClickListener(activityAdapter);
         activityListView.setOnItemLongClickListener(activityAdapter);
         activityListView.setOnTouchListener(new ShowHideOnScroll(actionButton));
-
     }
 
     private Routine getRoutineFromIntent(Intent intent) {
