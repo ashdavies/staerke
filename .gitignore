@@ -12,7 +12,8 @@
 bin/
 gen/
 out/
-build/
+build.log
+build-log.xml
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -21,6 +22,7 @@ local.properties
 .classpath
 .settings
 target/
+build/
 classes/
 gen-external-apklibs/
 tmp/
@@ -32,9 +34,31 @@ tmp/
 .idea/
 .gradle/
 
+# Android
+local.properties
+
 # MAC
 *.DS_Store
 
+# Linux
+*~
+
+# api scripts
+session.key
+access.token
+response.txt
+feed.cookie
+login.properties
+.pt
 *.orig
-build
-.idea
+terminator/
+feed.cookie
+login.properties
+
+# generated every build
+crashlytics.properties
+com_crashlytics_export_strings.xml
+
+app/build
+app-test/build
+lint-results.xml
