@@ -1,5 +1,7 @@
 package com.chaos.starke.core;
 
+import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,28 +36,33 @@ public class RoutineActivity extends ActionBarActivity implements OnClickListene
         routine = getRoutineFromIntent(getIntent());
         activityAdapter = new ActivityAdapter(this, getActivitiesForRoutine(routine));
 
-        setupActionButton();
-        setupActivitiesList();
+        setupActionButton(getSupportFragmentManager());
+        setupActivitiesList(activityAdapter);
+        setupNotification();
     }
 
-    private void setupActionButton() {
+    private void setupActionButton(final FragmentManager fragmentManager) {
         actionButton = (FloatingActionButton) findViewById(R.id.create);
         actionButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 CreateActivityDialog dialog = new CreateActivityDialog(routine, null);
-                dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
+                dialog.show(fragmentManager, dialog.getClass().getName());
             }
         });
     }
 
-    private void setupActivitiesList() {
+    private void setupActivitiesList(final ActivityAdapter activityAdapter) {
         activityListView = (ListView) findViewById(R.id.activities);
         activityListView.setAdapter(activityAdapter);
         activityListView.setOnItemClickListener(activityAdapter);
         activityListView.setOnItemLongClickListener(activityAdapter);
         activityListView.setOnTouchListener(new ShowHideOnScroll(actionButton));
+    }
+
+    private void setupNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder();
     }
 
     private Routine getRoutineFromIntent(Intent intent) {
