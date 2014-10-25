@@ -1,7 +1,7 @@
 package com.chaos.starke.core;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -23,7 +23,7 @@ public class RoutineActivity extends ActionBarActivity implements OnClickListene
 
     private Routine routine;
 
-    private FloatingActionButton createActivity;
+    private FloatingActionButton actionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,33 +31,42 @@ public class RoutineActivity extends ActionBarActivity implements OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routine);
 
-        createActivity = (FloatingActionButton) findViewById(R.id.create);
-        createActivity.setOnClickListener(this);
+        routine = getRoutineFromIntent(getIntent());
+        activityAdapter = new ActivityAdapter(this, getActivitiesForRoutine(routine));
 
-        long routineId = getIntent().getLongExtra("routine", 0);
-        routine = Routine.findById(Routine.class, routineId);
+        setupActionButton();
+        setupActivitiesList();
+    }
 
-        List<Activity> activities = Activity.find(Activity.class, "routine = ?", new String[]{String.valueOf(routineId)});
-        activityAdapter = new ActivityAdapter(this, activities);
+    private void setupActionButton() {
+        actionButton = (FloatingActionButton) findViewById(R.id.create);
+        actionButton.setOnClickListener(new OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+                CreateActivityDialog dialog = new CreateActivityDialog(routine, null);
+                dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
+            }
+        });
+    }
+
+    private void setupActivitiesList() {
         activityListView = (ListView) findViewById(R.id.activities);
         activityListView.setAdapter(activityAdapter);
         activityListView.setOnItemClickListener(activityAdapter);
-        activityListView.setOnTouchListener(new ShowHideOnScroll(createActivity));
+        activityListView.setOnItemLongClickListener(activityAdapter);
+        activityListView.setOnTouchListener(new ShowHideOnScroll(actionButton));
 
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+    private Routine getRoutineFromIntent(Intent intent) {
+        long routineId = intent.getLongExtra("routine", 0);
+        return Routine.findById(Routine.class, routineId);
+    }
 
-            case R.id.create:
-
-                CreateActivityDialog dialog = new CreateActivityDialog(routine, null);
-                dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
-                return;
-
-        }
+    private List<Activity> getActivitiesForRoutine(Routine routine) {
+        String routineId = String.valueOf(routine.id);
+        return Activity.find(Activity.class, "routine = ?", new String[]{routineId});
     }
 
 }
