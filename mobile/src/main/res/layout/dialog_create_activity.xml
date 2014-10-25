@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:padding="@dimen/dialog_standard_padding">
+
+  <TextView
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/dialog_create_activity_title"/>
 
   <Spinner
     android:id="@+id/name"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/standard_margin" />
+    android:layout_marginTop="@dimen/standard_margin" />
 
   <LinearLayout
     android:id="@+id/labels"
@@ -82,4 +90,4 @@
 
   </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
