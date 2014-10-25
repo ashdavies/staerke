@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends ActionBarActivity {
 
     private static final long NO_ROUTINES = 0;
 

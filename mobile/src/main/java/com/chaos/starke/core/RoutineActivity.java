@@ -16,7 +16,7 @@ import com.shamanland.fab.ShowHideOnScroll;
 
 import java.util.List;
 
-public class RoutineActivity extends FragmentActivity implements OnClickListener {
+public class RoutineActivity extends ActionBarActivity implements OnClickListener {
 
     private ActivityAdapter activityAdapter;
     private ListView activityListView;
