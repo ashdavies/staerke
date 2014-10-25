@@ -16,13 +16,11 @@ public class Action extends SugarRecord<Action> {
     }
 
     public Action(Activity activity) {
-
         this.name = activity.name;
         this.weight = activity.weight;
         this.repetitions = activity.repetitions;
         this.sets = activity.sets;
 
         this.date = System.currentTimeMillis();
-
     }
 }

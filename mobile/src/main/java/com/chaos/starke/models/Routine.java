@@ -48,11 +48,9 @@ public class Routine extends SugarRecord<Routine> {
     }
 
     public Routine(String name, Category category) {
-
         this.name = name;
         this.category = category;
         this.favourite = false;
-
     }
 
 }
