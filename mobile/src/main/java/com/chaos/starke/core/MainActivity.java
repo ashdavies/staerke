@@ -33,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout navigationLayout;
     private ListView navigationList;
 
-    private FloatingActionButton floatingActionButton;
+    private FloatingActionButton actionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void setupActionButton() {
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.create);
-        floatingActionButton.setOnClickListener(new OnClickListener() {
+        actionButton = (FloatingActionButton) findViewById(R.id.create);
+        actionButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 CreateRoutineDialog dialog = new CreateRoutineDialog();
@@ -75,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
         routineListView = (ListView) findViewById(R.id.routines);
         routineListView.setOnItemClickListener(routineAdapter);
         routineListView.setAdapter(routineAdapter);
-        routineListView.setOnTouchListener(new ShowHideOnScroll(floatingActionButton));
+        routineListView.setOnTouchListener(new ShowHideOnScroll(actionButton));
 
         if (hasNoRoutines()) {
             routineAdapter.importFromResource(new Gson(), R.raw.routines);
