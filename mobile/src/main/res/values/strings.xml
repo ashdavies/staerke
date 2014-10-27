@@ -17,7 +17,7 @@
     <string name="dialog_create_routine_name">Routine Name</string>
 
     <string name="dialog_title_edit_activity">Edit Activity</string>
-    <string name="dialog_create_activity_title">Add Activity</string>
+    <string name="dialog_title_create_activity">Add Activity</string>
     <string name="dialog_create_activity_name">Name</string>
     <string name="dialog_create_activity_weight">Weight (Kg)</string>
     <string name="dialog_create_activity_repetitions">Reps</string>

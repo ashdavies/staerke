@@ -103,7 +103,7 @@ public class CreateActivityDialog extends DialogFragment {
         }
 
         builder.setView(view)
-                .setTitle(activity == null ? R.string.dialog_create_activity_title : R.string.dialog_title_edit_activity)
+                .setTitle(activity == null ? R.string.dialog_title_create_activity : R.string.dialog_title_edit_activity)
                 .setPositiveButton(activity == null ? R.string.action_create : R.string.action_edit, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
