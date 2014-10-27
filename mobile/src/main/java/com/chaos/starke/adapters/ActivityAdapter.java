@@ -49,8 +49,8 @@ public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         new Action(getItem(position)).save();
-        String message = getResources().getString(R.string.action_added);
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        String message = context.getResources().getString(R.string.action_added);
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
