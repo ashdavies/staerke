@@ -1,9 +1,9 @@
 package com.chaos.starke.core;
 
-import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -18,7 +18,7 @@ import com.shamanland.fab.ShowHideOnScroll;
 
 import java.util.List;
 
-public class RoutineActivity extends ActionBarActivity implements OnClickListener {
+public class RoutineActivity extends ActionBarActivity {
 
     private ActivityAdapter activityAdapter;
     private ListView activityListView;
@@ -62,7 +62,7 @@ public class RoutineActivity extends ActionBarActivity implements OnClickListene
     }
 
     private void setupNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder();
+
     }
 
     private Routine getRoutineFromIntent(Intent intent) {
@@ -71,7 +71,7 @@ public class RoutineActivity extends ActionBarActivity implements OnClickListene
     }
 
     private List<Activity> getActivitiesForRoutine(Routine routine) {
-        String routineId = String.valueOf(routine.id);
+        String routineId = String.valueOf(routine.getId());
         return Activity.find(Activity.class, "routine = ?", new String[]{routineId});
     }
 
