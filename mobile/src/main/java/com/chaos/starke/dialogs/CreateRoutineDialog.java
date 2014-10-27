@@ -33,6 +33,7 @@ public class CreateRoutineDialog extends DialogFragment {
         category.setAdapter(adapter);
 
         builder.setView(view)
+                .setTitle(R.string.dialog_title_create_routine)
                 .setPositiveButton(R.string.action_create, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
