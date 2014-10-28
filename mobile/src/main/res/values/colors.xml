@@ -5,16 +5,17 @@
     <color name="foreground">#F5F5F5</color>
     
     <color name="primary">#5264ae</color>
-    <color name="primary_highlight">#7486CF</color>
-    <color name="primary_lowlight">#30428C</color>
+    <color name="primary_light">#7486CF</color>
+    <color name="primary_dark">#30428C</color>
 
     <color name="accent">#E91E63</color>
-    <color name="accent_highlight">#F48FB1</color>
-    <color name="accent_lowlight">#AD1457</color>
+    <color name="accent_light">#F48FB1</color>
+    <color name="accent_dark">#AD1457</color>
     
     <color name="dividers">#1E000000</color>
     <color name="hint_text">#42000000</color>
-    <color name="secondary_text">#89000000</color>
+
     <color name="primary_text">#DD000000</color>
-    
+    <color name="secondary_text">#89000000</color>
+
 </resources>
