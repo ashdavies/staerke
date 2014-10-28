@@ -3,6 +3,7 @@ package com.chaos.starke.core;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,9 +37,15 @@ public class RoutineActivity extends ActionBarActivity {
         routine = getRoutineFromIntent(getIntent());
         activityAdapter = new ActivityAdapter(this, getActivitiesForRoutine(routine));
 
+        setupActionBar(getSupportActionBar());
         setupActionButton(getSupportFragmentManager());
         setupActivitiesList(activityAdapter);
         setupNotification();
+    }
+
+    private void setupActionBar(ActionBar actionBar) {
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupActionButton(final FragmentManager fragmentManager) {

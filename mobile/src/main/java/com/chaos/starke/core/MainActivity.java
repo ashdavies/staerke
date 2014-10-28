@@ -3,9 +3,10 @@ package com.chaos.starke.core;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,9 +41,15 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupActionBar(getSupportActionBar());
         setupActionButton();
-        setupNavigation();
+        setupNavigation(this);
         setupRoutines();
+    }
+
+    private void setupActionBar(ActionBar actionBar) {
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupActionButton() {
@@ -56,8 +63,8 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    private void setupNavigation() {
-        navigationAdapter = new NavigationAdapter(this);
+    private void setupNavigation(ActionBarActivity activity) {
+        navigationAdapter = new NavigationAdapter(activity);
         navigationAdapter.addCategories(Routine.Category.values());
 
         navigationList = (ListView) findViewById(R.id.navigation_drawer);
@@ -65,8 +72,8 @@ public class MainActivity extends ActionBarActivity {
         navigationList.setOnItemClickListener(navigationAdapter);
 
         navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationToggle = new ActionBarDrawerToggle(this, navigationLayout, R.drawable.ic_navigation_drawer,
-                R.string.application, R.string.application);
+        navigationToggle = new ActionBarDrawerToggle(activity, navigationLayout, R.string.application, R.string.application);
+        navigationToggle.setDrawerIndicatorEnabled(true);
         navigationLayout.setDrawerListener(navigationToggle);
     }
 

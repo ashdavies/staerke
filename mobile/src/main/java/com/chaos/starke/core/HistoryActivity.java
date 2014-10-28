@@ -1,13 +1,14 @@
 package com.chaos.starke.core;
 
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.os.Bundle;
 
 import com.chaos.starke.R;
+import com.chaos.starke.adapters.ActionAdapter;
 import com.chaos.starke.adapters.items.ActionEntry;
 import com.chaos.starke.adapters.items.ActionHeader;
 import com.chaos.starke.adapters.items.ActionInterface;
-import com.chaos.starke.adapters.ActionAdapter;
 import com.chaos.starke.models.Action;
 import com.orm.query.Select;
 
@@ -30,6 +31,8 @@ public class HistoryActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        setupActionBar(getActionBar());
+
         SimpleDateFormat format = new SimpleDateFormat("cccc dd LLLL", Locale.GERMANY);
 
         items = new ArrayList<ActionInterface>();
@@ -47,6 +50,11 @@ public class HistoryActivity extends ListActivity {
         adapter = new ActionAdapter(context, items);
         setListAdapter(adapter);
 
+    }
+
+    private void setupActionBar(ActionBar actionBar) {
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
 }
