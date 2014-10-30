@@ -23,6 +23,8 @@ import java.util.List;
 
 public class RoutineActivity extends ActionBarActivity {
 
+    private static final int TRACKING_NOTIFICATION_ID = 16;
+
     private ActivityAdapter activityAdapter;
     private ListView activityListView;
 
@@ -77,7 +79,7 @@ public class RoutineActivity extends ActionBarActivity {
                 .setContentText(routineActivity.getString(R.string.notification_tracking_workout_text));
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(routineActivity);
-        notificationManager.notify(16, notificationBuilder.build());
+        notificationManager.notify(TRACKING_NOTIFICATION_ID, notificationBuilder.build());
     }
 
     private Routine getRoutineFromIntent(Intent intent) {
