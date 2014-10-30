@@ -24,6 +24,10 @@
       android:name="DOMAIN_PACKAGE_NAME"
       android:value="com.chaos.starke" />
 
+    <meta-data
+      android:name="com.google.android.gms.version"
+      android:value="@integer/google_play_services_version" />
+
     <activity
       android:name=".core.MainActivity"
       android:label="@string/application">
