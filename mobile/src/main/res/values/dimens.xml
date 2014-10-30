@@ -17,5 +17,6 @@
 
   <dimen name="floating_button_size">70dip</dimen>
   <dimen name="floating_button_margin">25dip</dimen>
+  <dimen name="activities_graph_height">150dip</dimen>
 
 </resources>
