@@ -43,8 +43,8 @@
     </activity>
 
     <activity
-      android:name=".core.HistoryActivity"
-      android:label="@string/activity_history"
+      android:name=".core.ActivitiesActivity"
+      android:label="@string/activity_activities"
       android:parentActivityName=".core.MainActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"

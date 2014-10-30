@@ -6,7 +6,7 @@
 
     <string name="activity_routine">Routines</string>
     <string name="activity_routine_detail">Activities</string>
-    <string name="activity_history">History</string>
+    <string name="activity_activities">Activities</string>
 
     <string name="fragment_title_favourites">My Routines</string>
 

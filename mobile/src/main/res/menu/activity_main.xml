@@ -2,8 +2,8 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
-    android:id="@+id/history"
-    android:title="@string/activity_history"
+    android:id="@+id/activities"
+    android:title="@string/activity_activities"
     app:showAsAction="always" />
 
 </menu>

@@ -123,8 +123,8 @@ public class MainActivity extends ActionBarActivity {
 
         switch (item.getItemId()) {
 
-            case R.id.history:
-                startActivity(new Intent(this, HistoryActivity.class));
+            case R.id.activities:
+                startActivity(new Intent(this, ActivitiesActivity.class));
                 return true;
 
             default:
