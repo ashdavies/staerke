@@ -3,6 +3,8 @@ package com.chaos.starke.core;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -40,7 +42,7 @@ public class RoutineActivity extends ActionBarActivity {
         setupActionBar(getSupportActionBar());
         setupActionButton(getSupportFragmentManager());
         setupActivitiesList(activityAdapter);
-        setupNotification();
+        setupNotification(this);
     }
 
     private void setupActionBar(ActionBar actionBar) {
@@ -68,8 +70,14 @@ public class RoutineActivity extends ActionBarActivity {
         activityListView.setOnTouchListener(new ShowHideOnScroll(actionButton));
     }
 
-    private void setupNotification() {
+    private void setupNotification(final RoutineActivity routineActivity) {
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(routineActivity)
+                .setSmallIcon(R.drawable.ic_launcher_circle)
+                .setContentTitle(routineActivity.getString(R.string.notification_tracking_workout))
+                .setContentText(routineActivity.getString(R.string.notification_tracking_workout_text));
 
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(routineActivity);
+        notificationManager.notify(16, notificationBuilder.build());
     }
 
     private Routine getRoutineFromIntent(Intent intent) {
