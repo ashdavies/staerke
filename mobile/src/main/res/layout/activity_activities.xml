@@ -3,7 +3,7 @@
   android:layout_height="match_parent"
   android:orientation="vertical">
 
-  <SurfaceView
+  <LinearLayout
     android:id="@+id/acceleration"
     android:layout_width="match_parent"
     android:layout_height="@dimen/activities_graph_height" />

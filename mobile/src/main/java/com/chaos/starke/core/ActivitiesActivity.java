@@ -2,15 +2,10 @@ package com.chaos.starke.core;
 
 import android.app.ActionBar;
 import android.app.ListActivity;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import android.widget.LinearLayout;
 
 import com.chaos.starke.R;
 import com.chaos.starke.adapters.ActionAdapter;
@@ -18,6 +13,10 @@ import com.chaos.starke.adapters.items.ActionEntry;
 import com.chaos.starke.adapters.items.ActionHeader;
 import com.chaos.starke.adapters.items.ActionInterface;
 import com.chaos.starke.models.Action;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.GraphViewStyle;
+import com.jjoe64.graphview.LineGraphView;
 import com.orm.query.Select;
 
 import java.text.SimpleDateFormat;
@@ -31,12 +30,11 @@ public class ActivitiesActivity extends ListActivity {
 
     private final ActivitiesActivity context = this;
 
-    private static final int MAXIMUM_HORIZONTAL_SIZE = 100;
+    private final int MAXIMUM_HORIZONTAL_AMOUNT = 100;
 
-    private SurfaceView accelerationGraph;
-    private SurfaceHolder accelerationGraphHolder;
-    private final Paint accelerationPainter = new Paint();
-    private final List<Double> accelerationData = new ArrayList<Double>();
+    private GraphViewSeries accelerationDataSeries;
+    private GraphView accelerationGraph;
+    private int currentIndex = 6;
 
     private ActionAdapter adapter;
     private List<ActionInterface> items;
@@ -48,7 +46,7 @@ public class ActivitiesActivity extends ListActivity {
         setContentView(R.layout.activity_activities);
 
         //setupActionBar(getActionBar());
-        setupAccelerationGraph((SurfaceView) findViewById(R.id.acceleration));
+        setupAccelerationGraph(this, (LinearLayout)findViewById(R.id.acceleration));
 
         SimpleDateFormat format = new SimpleDateFormat("cccc dd LLLL", Locale.GERMANY);
 
@@ -76,37 +74,22 @@ public class ActivitiesActivity extends ListActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void setupAccelerationGraph(SurfaceView accelerationGraph) {
-        this.accelerationGraph = accelerationGraph;
-        accelerationGraphHolder = accelerationGraph.getHolder();
-        int color = context.getResources().getColor(android.R.color.white);
-        accelerationPainter.setColor(color);
+    private void setupAccelerationGraph(Context context, LinearLayout container) {
+        accelerationDataSeries = new GraphViewSeries(new GraphView.GraphViewData[]{});
+        accelerationGraph = new LineGraphView(context, context.getString(R.string.activity_activities));
+        accelerationGraph.addSeries(accelerationDataSeries);
+        accelerationGraph.setScrollable(true);
+        accelerationGraph.setShowHorizontalLabels(false);
+        accelerationGraph.getGraphViewStyle().setGridStyle(GraphViewStyle.GridStyle.HORIZONTAL);
+        accelerationGraph.setViewPort(1, MAXIMUM_HORIZONTAL_AMOUNT);
+        accelerationGraph.setScalable(true);
+        container.addView(accelerationGraph);
     }
 
     public void addAccelerationData(double value) {
-        accelerationData.add(value);
-        if (accelerationData.size() >= MAXIMUM_HORIZONTAL_SIZE) {
-            accelerationData.remove(0);
-        }
-        Log.i(getPackageName(), "data:" + accelerationData.size() + "x" + value);
-    }
-
-    private void updateAccelerationGraph() {
-
-        Canvas canvas = accelerationGraphHolder.lockCanvas();
-        int height = accelerationGraph.getHeight();
-        int tick = accelerationGraph.getWidth() / MAXIMUM_HORIZONTAL_SIZE;
-
-        canvas.drawColor(Color.BLACK);
-        for (int i = 0; i < accelerationData.size(); i++) {
-            int index = i == accelerationData.size() - 1 ? i : i + 1;
-            Point from = new Point((i + 1) * tick, (int) (height - accelerationData.get(i)));
-            Point to = new Point((i + 2) * tick, (int) (height - accelerationData.get(index)));
-            canvas.drawLine(from.x, from.y, to.x, to.y, accelerationPainter);
-        }
-
-        accelerationGraphHolder.unlockCanvasAndPost(canvas);
-
+        GraphView.GraphViewData graphViewData = new GraphView.GraphViewData(currentIndex + 1, value);
+        accelerationDataSeries.appendData(graphViewData, true, MAXIMUM_HORIZONTAL_AMOUNT);
+        currentIndex++;
     }
 
     Handler testHandler = new Handler();
@@ -116,7 +99,6 @@ public class ActivitiesActivity extends ListActivity {
         public void run() {
             double data = new Random().nextInt(accelerationGraph.getHeight());
             addAccelerationData(data);
-            updateAccelerationGraph();
             testHandler.postDelayed(this, 100);
         }
     };
