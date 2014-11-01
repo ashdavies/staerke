@@ -4,6 +4,7 @@
   android:orientation="vertical">
 
   <SurfaceView
+    android:id="@+id/acceleration"
     android:layout_width="match_parent"
     android:layout_height="@dimen/activities_graph_height" />
 

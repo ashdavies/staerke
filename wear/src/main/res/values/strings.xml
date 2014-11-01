@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Starke</string>
+  <string name="application">Starke</string>
+  <string name="description">Strength Training and Fitness Tracker</string>
+
+  <string name="notification_tracking_workout">Tracking Workout</string>
+  <string name="notification_tracking_workout_text">Starke is tracking your workout</string>
 </resources>
