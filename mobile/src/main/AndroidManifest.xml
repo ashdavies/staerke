@@ -52,7 +52,14 @@
       android:parentActivityName=".core.MainActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".core.MainActivity" /></activity>
+        android:value=".core.MainActivity" />
+    </activity>
+
+    <service android:name=".core.ActivitiesTrackingListenerService">
+      <intent-filter>
+        <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+      </intent-filter>
+    </service>
 
   </application>
 
