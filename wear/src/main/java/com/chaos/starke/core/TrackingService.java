@@ -4,11 +4,11 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.chaos.starke.R;
-import com.chaos.starke.core.TrackingActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.data.FreezableUtils;
@@ -30,15 +30,13 @@ public class TrackingService extends WearableListenerService {
     public static final String PATH_NOTIFICATION = "/ongoingnotification";
     public static final String PATH_DISMISS = "/dismissnotification";
 
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleApiClient googleApiClient;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Wearable.API)
-                .build();
-        mGoogleApiClient.connect();
+        googleApiClient = new GoogleApiClient.Builder(this).addApi(Wearable.API).build();
+        googleApiClient.connect();
     }
 
     @Override
@@ -46,8 +44,8 @@ public class TrackingService extends WearableListenerService {
         final List<DataEvent> events = FreezableUtils.freezeIterable(dataEvents);
         dataEvents.close();
 
-        if (!mGoogleApiClient.isConnected()) {
-            ConnectionResult connectionResult = mGoogleApiClient.blockingConnect(30, TimeUnit.SECONDS);
+        if (!googleApiClient.isConnected()) {
+            ConnectionResult connectionResult = googleApiClient.blockingConnect(30, TimeUnit.SECONDS);
             if (!connectionResult.isSuccess()) {
                 Log.e(getPackageName(), "Service failed to connect to GoogleApiClient.");
                 return;
@@ -59,16 +57,22 @@ public class TrackingService extends WearableListenerService {
                 String path = event.getDataItem().getUri().getPath();
                 if (PATH_NOTIFICATION.equals(path)) {
 
-                    Intent notificationIntent = new Intent(this, TrackingActivity.class);
-                    PendingIntent notificationPendingIntent = PendingIntent.getActivity(this, 0,
-                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+                    final String title = dataMapItem.getDataMap().getString(TrackingActivity.KEY_EXTRA_TITLE);
+                    Asset asset = dataMapItem.getDataMap().getAsset(TrackingActivity.KEY_EXTRA_IMAGE);
 
-                    Notification.Builder notificationBuilder =
-                            new Notification.Builder(this)
-                                    .setSmallIcon(R.drawable.ic_launcher)
-                                    .extend(new Notification.WearableExtender()
-                                                    .setDisplayIntent(notificationPendingIntent)
-                                    );
+                    Intent notificationIntent = new Intent(this, TrackingActivity.class);
+                    notificationIntent.putExtra(TrackingActivity.KEY_EXTRA_TITLE, title);
+                    notificationIntent.putExtra(TrackingActivity.KEY_EXTRA_IMAGE, asset);
+                    PendingIntent notificationPendingIntent = PendingIntent.getActivity(
+                            this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    Notification.Builder notificationBuilder = new Notification.Builder(this)
+                            .setSmallIcon(R.drawable.ic_launcher_circle)
+                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_circle))
+                            .setOngoing(true)
+                            .extend(new Notification.WearableExtender()
+                                    .setDisplayIntent(notificationPendingIntent));
 
                     NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                     notificationManager.notify(ONGOING_NOTIFICATION_ID, notificationBuilder.build());
