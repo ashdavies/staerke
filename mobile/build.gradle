@@ -30,6 +30,6 @@ dependencies {
     compile 'com.shamanland:fab:0.0.5'
     compile 'de.hdodenhof:circleimageview:1.2.0'
 
-    androidTestCompile "org.mockito:mockito-core:1.9.5"
+    compile project(':shared')
     wearApp project(':wear')
 }

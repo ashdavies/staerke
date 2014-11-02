@@ -1,111 +1,64 @@
 package com.chaos.starke.core;
 
+import android.content.Context;
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Bundle;
-import android.os.Handler;
 import android.support.wearable.activity.InsetActivity;
-import android.util.Log;
 
 import com.chaos.starke.R;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.wearable.MessageApi;
-import com.google.android.gms.wearable.MessageEvent;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.NodeApi;
-import com.google.android.gms.wearable.Wearable;
 
-import java.util.List;
-
-public class TrackingActivity extends InsetActivity implements MessageApi.MessageListener, GoogleApiClient.ConnectionCallbacks {
-
-    public static final String KEY_EXTRA_TITLE = "EXTRA_TITLE";
-    public static final String KEY_EXTRA_IMAGE = "EXTRA_IMAGE";
+public class TrackingActivity extends InsetActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor accelerometerSensor;
+    private Sensor heartrateSensor;
+    private Sensor significantMotionSensor;
 
-    private GoogleApiClient googleApiClient;
-
-    private Handler sensoreUpdateHandler = new Handler();
-    private Runnable sensorUpdateRunnable = new Runnable() {
-        @Override public void run() {
-            Double acceleration = (double)accelerometerSensor.getPower();
-            sendMessage(acceleration.toString(), null);
-            sensoreUpdateHandler.postDelayed(sensorUpdateRunnable, 500);
-        }
-    };
+    private TrackingClient trackingClient;
 
     @Override
     public void onReadyForContent() {
         setContentView(R.layout.activity_tracking);
 
-        setupGoogleApiClient(this);
-        setupSensors(this);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
+        setupWearClient(this);
+        setupSensors(sensorManager);
+        registerSensorListeners(sensorManager, this);
     }
 
-    private void setupGoogleApiClient(TrackingActivity context) {
-        googleApiClient = new GoogleApiClient.Builder(context)
-                .addConnectionCallbacks(context)
-                .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
-                    @Override
-                    public void onConnectionFailed(ConnectionResult result) {
-                        Log.i(TrackingActivity.class.getSimpleName(), "Connection failed");
-                    }
-                })
-                .addApi(Wearable.API)
-                .build();
-
-        googleApiClient.connect();
+    private void setupWearClient(Context context) {
+        trackingClient = new TrackingClient(context);
     }
 
-    private void setupSensors(TrackingActivity trackingActivity) {
-        sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-        accelerometerSensor = sensorManager.getDefaultSensor(SensorManager.SENSOR_ACCELEROMETER);
+    private void setupSensors(SensorManager sensorManager) {
+        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        heartrateSensor = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
+        significantMotionSensor = sensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION);
     }
 
-
-    @Override
-    public void onConnected(Bundle bundle) {
-        Wearable.MessageApi.addListener(googleApiClient, this);
-        sensoreUpdateHandler.post(sensorUpdateRunnable);
+    private void registerSensorListeners(SensorManager sensorManager, SensorEventListener sensorEventListener) {
+        sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorEventListener, heartrateSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorEventListener, significantMotionSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-        Log.i(TrackingActivity.class.getSimpleName(), "Connection failed");
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        trackingClient.send(sensorEvent.sensor.getType(), sensorEvent.accuracy, sensorEvent.timestamp, sensorEvent.values);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Wearable.MessageApi.removeListener(googleApiClient, this);
-        googleApiClient.disconnect();
+        trackingClient.disconnect();
     }
 
-    private void sendMessage(final String message, final byte[] payload) {
-        Wearable.NodeApi.getConnectedNodes(googleApiClient).setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
-            @Override
-            public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
-                List<Node> nodes = getConnectedNodesResult.getNodes();
-                for (Node node : nodes) {
-                    Wearable.MessageApi.sendMessage(googleApiClient, node.getId(), message, payload).setResultCallback(new ResultCallback<MessageApi.SendMessageResult>() {
-                        @Override
-                        public void onResult(MessageApi.SendMessageResult sendMessageResult) {
-                            Log.i(TrackingActivity.class.getSimpleName(), "WEAR Result " + sendMessageResult.getStatus());
-                        }
-                    });
-                }
-
-            }
-        });
-    }
-
-    @Override
-    public void onMessageReceived(MessageEvent messageEvent) {
-
-    }
 }

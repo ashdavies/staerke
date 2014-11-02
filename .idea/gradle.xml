@@ -9,6 +9,7 @@
           <set>
             <option value="$USER_HOME$/Drive/Projects/Chaos/Starke" />
             <option value="$USER_HOME$/Drive/Projects/Chaos/Starke/mobile" />
+            <option value="$USER_HOME$/Drive/Projects/Chaos/Starke/shared" />
             <option value="$USER_HOME$/Drive/Projects/Chaos/Starke/wear" />
           </set>
         </option>
