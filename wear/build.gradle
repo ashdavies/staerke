@@ -6,7 +6,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "starke.chaos.com.starke"
+        applicationId "com.chaos.starke"
         minSdkVersion 20
         targetSdkVersion 20
         versionCode 1
