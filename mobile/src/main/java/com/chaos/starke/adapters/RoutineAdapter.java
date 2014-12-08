@@ -36,7 +36,6 @@ public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClick
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.card_routine, parent, false);
         }
@@ -67,18 +66,15 @@ public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClick
         });
 
         return convertView;
-
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         Routine routine = getItem(position);
 
         Intent intent = new Intent(context, RoutineActivity.class);
         intent.putExtra("routine", routine.getId());
         context.startActivity(intent);
-
     }
 
     public void addRoutinesFromCategory(Routine.Category category) {

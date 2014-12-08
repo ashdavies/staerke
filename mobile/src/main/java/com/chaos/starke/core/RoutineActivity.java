@@ -34,7 +34,6 @@ public class RoutineActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routine);
 
@@ -44,7 +43,7 @@ public class RoutineActivity extends ActionBarActivity {
         setupActionBar(getSupportActionBar());
         setupActionButton(getSupportFragmentManager());
         setupActivitiesList(activityAdapter);
-        setupNotification(this);
+        //setupNotification(this);
     }
 
     private void setupActionBar(ActionBar actionBar) {
