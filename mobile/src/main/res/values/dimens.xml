@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <dimen name="action_bar_height">56dip</dimen>
-  <dimen name="standard_header_height">48dip</dimen>
+    <dimen name="action_bar_height">56dip</dimen>
+    <dimen name="standard_header_height">48dip</dimen>
 
-  <dimen name="standard_padding">16dip</dimen>
-  <dimen name="standard_margin">16dip</dimen>
+    <dimen name="standard_padding">16dip</dimen>
+    <dimen name="standard_margin">16dip</dimen>
 
-  <dimen name="list_item_height">72dip</dimen>
-  <dimen name="list_item_thumbnail">40dip</dimen>
+    <dimen name="list_item_height">72dip</dimen>
+    <dimen name="list_item_thumbnail">36dip</dimen>
+    <dimen name="list_item_margin">12dip</dimen>
 
-  <dimen name="navigation_item_height">48dip</dimen>
-  <dimen name="navigation_drawer_right_margin">56dip</dimen>
+    <dimen name="navigation_item_height">48dip</dimen>
+    <dimen name="navigation_drawer_right_margin">56dip</dimen>
 
-  <dimen name="dialog_standard_padding">24dip</dimen>
+    <dimen name="dialog_standard_padding">24dip</dimen>
 
-  <dimen name="floating_button_size">70dip</dimen>
-  <dimen name="floating_button_margin">25dip</dimen>
-  <dimen name="activities_graph_height">150dip</dimen>
+    <dimen name="floating_button_size">70dip</dimen>
+    <dimen name="floating_button_margin">25dip</dimen>
+    <dimen name="activities_graph_height">150dip</dimen>
 
 </resources>

@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="@dimen/list_item_height">
-
-  <de.hdodenhof.circleimageview.CircleImageView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/thumbnail"
-    android:contentDescription="@string/description"
-    android:layout_width="@dimen/list_item_thumbnail"
-    android:layout_height="@dimen/list_item_thumbnail"
-    android:layout_margin="@dimen/standard_margin"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
-    android:scaleType="centerCrop"
-    app:border_width="2dp"
-    app:border_color="@color/foreground" />
-
-  <TextView
-    android:id="@+id/name"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/standard_margin"
-    android:layout_toRightOf="@+id/thumbnail"
-    android:gravity="center_vertical"
-    android:singleLine="true"
-    android:fontFamily="sans-serif-condensed"
-    android:textColor="@color/primary_text"
-    style="@android:style/TextAppearance.Medium" />
+    android:layout_height="@dimen/list_item_height">
 
-  <TextView
-    android:id="@+id/category"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_toRightOf="@+id/thumbnail"
-    android:layout_below="@+id/name"
-    android:gravity="center_vertical"
-    android:singleLine="true"
-    android:fontFamily="sans-serif-condensed"
-    android:textColor="@color/secondary_text"
-    style="@android:style/TextAppearance.Small" />
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/thumbnail"
+        android:contentDescription="@string/description"
+        android:layout_width="@dimen/list_item_thumbnail"
+        android:layout_height="@dimen/list_item_thumbnail"
+        android:layout_margin="@dimen/standard_margin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        app:border_width="2dp"
+        app:border_color="@color/dividers" />
 
-  <CheckBox
-    android:id="@+id/favourite"
-    android:layout_width="@dimen/list_item_thumbnail"
-    android:layout_height="@dimen/list_item_thumbnail"
-    android:layout_margin="@dimen/standard_margin"
-    android:layout_alignParentRight="true"
-    android:focusable="false"
-    android:gravity="center"
-    style="?android:attr/starStyle" />
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/primary_text"
+        style="@android:style/TextAppearance.Medium" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@+id/name"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/secondary_text"
+        style="@android:style/TextAppearance.Small" />
+
+    <CheckBox
+        android:id="@+id/favourite"
+        android:layout_width="@dimen/list_item_thumbnail"
+        android:layout_height="@dimen/list_item_thumbnail"
+        android:layout_margin="@dimen/standard_margin"
+        android:layout_alignParentRight="true"
+        android:focusable="false"
+        android:gravity="center"
+        style="?android:attr/starStyle" />
 
 </RelativeLayout>

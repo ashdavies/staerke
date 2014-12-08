@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
 
         setupActionBar(getSupportActionBar());
         setupActionButton();
-        setupNavigation(this);
+        setupNavigation();
         setupRoutines();
     }
 
@@ -63,8 +63,8 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    private void setupNavigation(ActionBarActivity activity) {
-        navigationAdapter = new NavigationAdapter(activity);
+    private void setupNavigation() {
+        navigationAdapter = new NavigationAdapter(this);
         navigationAdapter.addCategories(Routine.Category.values());
 
         navigationList = (ListView) findViewById(R.id.navigation_drawer);
@@ -72,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
         navigationList.setOnItemClickListener(navigationAdapter);
 
         navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationToggle = new ActionBarDrawerToggle(activity, navigationLayout, R.string.application, R.string.application);
+        navigationToggle = new ActionBarDrawerToggle(this, navigationLayout, R.string.application, R.string.application);
         navigationToggle.setDrawerIndicatorEnabled(true);
         navigationLayout.setDrawerListener(navigationToggle);
     }

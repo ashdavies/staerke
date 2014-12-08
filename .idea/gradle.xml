@@ -3,14 +3,15 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.2.1" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/Drive/Projects/Chaos/Starke" />
-            <option value="$USER_HOME$/Drive/Projects/Chaos/Starke/mobile" />
-            <option value="$USER_HOME$/Drive/Projects/Chaos/Starke/shared" />
-            <option value="$USER_HOME$/Drive/Projects/Chaos/Starke/wear" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/mobile" />
+            <option value="$PROJECT_DIR$/shared" />
+            <option value="$PROJECT_DIR$/wear" />
           </set>
         </option>
       </GradleProjectSettings>

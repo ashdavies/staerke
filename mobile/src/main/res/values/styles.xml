@@ -1,32 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <style name="Theme.Starke" parent="Theme.AppCompat.Light">
-    <item name="colorPrimary">@color/primary</item>
-    <item name="colorPrimaryDark">@color/primary_dark</item>
-    <item name="colorAccent">@color/accent</item>
+    <style name="Theme.Starke" parent="Theme.AppCompat">
+        <item name="android:windowBackground">@color/background</item>
 
-    <item name="actionBarStyle">@style/Theme.Starke.ActionBar</item>
-    <item name="actionBarTabTextStyle">@style/Theme.Starke.ActionBar.TabText</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
 
-    <item name="floatingActionButtonStyle">@style/Theme.Starke.Fab</item>
-  </style>
+        <item name="floatingActionButtonStyle">@style/Theme.Starke.Fab</item>
+    </style>
 
-  <style name="Theme.Starke.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
-    <item name="actionMenuTextColor">@android:color/white</item>
-    <item name="titleTextStyle">@style/Theme.Starke.ActionBar.Title</item>
-  </style>
-
-  <style name="Theme.Starke.ActionBar.Title" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-    <item name="android:textColor">@android:color/white</item>
-  </style>
-
-  <style name="Theme.Starke.ActionBar.TabText" parent="@style/Widget.AppCompat.ActionBar.TabText">
-    <item name="android:textColor">@android:color/white</item>
-  </style>
-
-  <style name="Theme.Starke.Fab" parent="FloatingActionButton">
-    <item name="floatingActionButtonColor">@color/accent</item>
-  </style>
+    <style name="Theme.Starke.Fab" parent="FloatingActionButton">
+        <item name="floatingActionButtonColor">@color/accent</item>
+    </style>
 
 </resources>
