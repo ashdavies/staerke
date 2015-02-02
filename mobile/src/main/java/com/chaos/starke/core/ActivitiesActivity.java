@@ -34,25 +34,17 @@ public class ActivitiesActivity extends ListActivity implements GoogleApiClient.
 
     private final ActivitiesActivity context = this;
 
-    private final int MAXIMUM_HORIZONTAL_AMOUNT = 100;
-
     private GoogleApiClient googleApiClient;
-
-    private GraphViewSeries accelerationDataSeries;
-    private GraphView accelerationGraph;
-    private int currentIndex = 6;
 
     private ActionAdapter adapter;
     private List<ActionInterface> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities);
 
         setupActionBar(getActionBar());
-        setupAccelerationGraph(this, (LinearLayout) findViewById(R.id.acceleration));
         setupActivities();
 
         setupWearListener(this);
@@ -61,18 +53,6 @@ public class ActivitiesActivity extends ListActivity implements GoogleApiClient.
     private void setupActionBar(final ActionBar actionBar) {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    private void setupAccelerationGraph(final Context context, final LinearLayout container) {
-        accelerationDataSeries = new GraphViewSeries(new GraphView.GraphViewData[]{});
-        accelerationGraph = new LineGraphView(context, context.getString(R.string.activity_activities));
-        accelerationGraph.addSeries(accelerationDataSeries);
-        accelerationGraph.setScrollable(true);
-        accelerationGraph.setShowHorizontalLabels(false);
-        accelerationGraph.getGraphViewStyle().setGridStyle(GraphViewStyle.GridStyle.HORIZONTAL);
-        accelerationGraph.setViewPort(1, MAXIMUM_HORIZONTAL_AMOUNT);
-        accelerationGraph.setScalable(true);
-        container.addView(accelerationGraph);
     }
 
     private void setupActivities() {
@@ -100,27 +80,11 @@ public class ActivitiesActivity extends ListActivity implements GoogleApiClient.
         googleApiClient.connect();
     }
 
-    public void addAccelerationData(double value) {
-        GraphView.GraphViewData graphViewData = new GraphView.GraphViewData(currentIndex + 1, value);
-        accelerationDataSeries.appendData(graphViewData, true, MAXIMUM_HORIZONTAL_AMOUNT);
-        currentIndex++;
-    }
-
     @Override
     public void onConnected(Bundle bundle) {
         Wearable.MessageApi.addListener(googleApiClient, new MessageApi.MessageListener() {
             @Override
             public void onMessageReceived(MessageEvent messageEvent) {
-                Log.i(getPackageName(), "Received value: " + messageEvent.getPath());
-                final Double value = Double.valueOf(messageEvent.getPath());
-                if (value > 0) {
-                    new Handler(getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            addAccelerationData(value);
-                        }
-                    });
-                }
             }
         });
 

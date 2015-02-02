@@ -5,15 +5,21 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.wearable.activity.InsetActivity;
+import android.widget.TextView;
 
 import com.chaos.starke.R;
 
 public class TrackingActivity extends InsetActivity implements SensorEventListener {
+    private static final int SPEED_THRESHOLD = 100;
 
     private SensorManager sensorManager;
     private Sensor accelerometerSensor;
 
-    private TrackingClient trackingClient;
+    private Pt lastPoint;
+
+    private int pulses = 0;
+
+    private TextView reading;
 
     @Override
     public void onReadyForContent() {
@@ -21,13 +27,10 @@ public class TrackingActivity extends InsetActivity implements SensorEventListen
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-        setupTrackingService();
         setupSensors(sensorManager);
         registerSensorListeners(sensorManager, this);
-    }
 
-    private void setupTrackingService() {
-        trackingClient = new TrackingClient(this);
+        reading = (TextView) findViewById(R.id.reading);
     }
 
     private void setupSensors(SensorManager sensorManager) {
@@ -40,12 +43,62 @@ public class TrackingActivity extends InsetActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        trackingClient.send(sensorEvent.sensor.getType(), sensorEvent.accuracy, sensorEvent.timestamp, sensorEvent.values);
+        Pt point = new Pt(sensorEvent.values);
+        if (lastPoint == null) {
+            lastPoint = point;
+        }
+
+        float speed = Math.abs(point.sum() - lastPoint.sum()) * 10000;
+
+        if (speed > SPEED_THRESHOLD) {
+            pulses++;
+        }
+
+        reading.setText("S:" + speed);
+        lastPoint = point;
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+    private class Pt {
+        private float x = 0;
+        private float y = 0;
+        private float z = 0;
+
+        public float getX() {
+            return this.x;
+        }
+
+        public float getY() {
+            return this.y;
+        }
+
+        public float getZ() {
+            return this.z;
+        }
+
+        public Pt(float x, float y, float z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public Pt(float[] values) {
+            if (values.length != 3) {
+                throw new RuntimeException("Invalid number of values");
+            }
+
+            this.x = values[0];
+            this.y = values[1];
+            this.z = values[2];
+        }
+
+        public float sum() {
+            return this.x + this.y + this.z;
+        }
     }
 
 }
