@@ -10,14 +10,18 @@ import android.widget.TextView;
 import com.chaos.starke.R;
 
 public class TrackingActivity extends InsetActivity implements SensorEventListener {
-    private static final int SPEED_THRESHOLD = 100;
+    private static final int DEFAULT_SPEED_THRESHOLD = 20;
+    private static final double DEFAULT_THRESHOLD_MARGIN = 0.8;
 
     private SensorManager sensorManager;
     private Sensor accelerometerSensor;
 
     private Pt lastPoint;
 
-    private int pulses = 0;
+    private double speedThreshold = DEFAULT_SPEED_THRESHOLD;
+    private double speedTotal = 0;
+
+    private int peaks = 0;
 
     private TextView reading;
 
@@ -48,13 +52,17 @@ public class TrackingActivity extends InsetActivity implements SensorEventListen
             lastPoint = point;
         }
 
-        float speed = Math.abs(point.sum() - lastPoint.sum()) * 10000;
+        float speed = Math.abs(point.sum() - lastPoint.sum());
+        speedTotal += speed;
 
-        if (speed > SPEED_THRESHOLD) {
-            pulses++;
+        if (speed > speedThreshold) {
+            peaks++;
         }
 
-        reading.setText("S:" + speed);
+        double averagePeak = speedTotal / peaks;
+        speedThreshold = averagePeak * DEFAULT_THRESHOLD_MARGIN;
+
+        reading.setText("P:" + peaks);
         lastPoint = point;
     }
 
