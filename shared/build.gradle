@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -21,4 +22,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    checkstyle 'com.puppycrawl.tools:checkstyle:6.1.1'
 }
