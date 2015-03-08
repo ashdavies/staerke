@@ -1,7 +1,6 @@
 package com.chaos.starke.core;
 
 import android.app.Activity;
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,8 +12,6 @@ import com.chaos.starke.R;
 public class TrackingActivity extends Activity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor accelerometerSensor;
-    private Sensor heartRateSensor;
-    private Sensor significantMotionSensor;
 
     private TrackingClient trackingClient;
 
@@ -25,25 +22,21 @@ public class TrackingActivity extends Activity implements SensorEventListener {
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-        setupWearClient(this);
+        setupTrackingService();
         setupSensors(sensorManager);
         registerSensorListeners(sensorManager, this);
     }
 
-    private void setupWearClient(Context context) {
-        trackingClient = new TrackingClient(context);
+    private void setupTrackingService() {
+        trackingClient = new TrackingClient(this);
     }
 
     private void setupSensors(SensorManager sensorManager) {
         accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        heartRateSensor = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
-        significantMotionSensor = sensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION);
     }
 
     private void registerSensorListeners(SensorManager sensorManager, SensorEventListener sensorEventListener) {
         sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager.registerListener(sensorEventListener, heartRateSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager.registerListener(sensorEventListener, significantMotionSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -55,11 +48,4 @@ public class TrackingActivity extends Activity implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        trackingClient.disconnect();
-    }
-
 }

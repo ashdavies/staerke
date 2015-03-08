@@ -51,12 +51,11 @@ public class ActivitiesActivity extends ListActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities);
 
-        //setupActionBar(getActionBar());
+        setupActionBar(getActionBar());
         setupAccelerationGraph(this, (LinearLayout) findViewById(R.id.acceleration));
         setupActivities();
 
         setupWearListener(this);
-
     }
 
     private void setupActionBar(final ActionBar actionBar) {
