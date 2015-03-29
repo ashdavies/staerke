@@ -1,25 +1,24 @@
 package com.chaos.starke.core;
 
+import android.app.Activity;
 import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.wearable.activity.InsetActivity;
-import android.widget.TextView;
+import android.os.Bundle;
 
 import com.chaos.starke.R;
 
-public class TrackingActivity extends InsetActivity implements MovementDetector.RepListener {
-    private SensorManager manager;
-    private Sensor sensor;
-
-    private MovementDetector detector;
+public class TrackingActivity extends Activity implements SensorEventListener {
+    private SensorManager sensorManager;
+    private Sensor accelerometerSensor;
 
     private TextView reading;
 
     private int steps = 0;
 
     @Override
-    public void onReadyForContent() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
 
         manager = (SensorManager) getSystemService(SENSOR_SERVICE);

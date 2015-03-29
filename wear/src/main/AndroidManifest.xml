@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chaos.starke">
 
@@ -8,21 +9,20 @@
         android:label="@string/application"
         android:icon="@drawable/ic_launcher_circle"
         android:theme="@android:style/Theme.DeviceDefault">
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".core.TrackingActivity"
-            android:label="@string/application"
-            android:icon="@drawable/ic_launcher_circle">
+            android:label="@string/application">
             <intent-filter>
                 <action android:name="com.chaoes.starke.ACTION.TrackingActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
