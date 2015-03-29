@@ -51,7 +51,7 @@ public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClick
         final TextView name = (TextView) resultView.findViewById(R.id.name);
         name.setText(routine.name);
 
-        final TextView category = (TextView) convertView.findViewById(R.id.category);
+        final TextView category = (TextView) resultView.findViewById(R.id.category);
         if (routine.category != null) {
             category.setText(routine.category.name());
         }
