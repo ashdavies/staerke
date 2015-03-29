@@ -19,20 +19,22 @@ public class NavigationAdapter extends ArrayAdapter<String> implements AdapterVi
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
-        final View resultView;
-
-        if (convertView == null) {
-            resultView = super.getView(position, convertView, parent);
-        } else {
-            resultView = convertView;
-        }
+    public View getView(final int position, final View view, final ViewGroup parent) {
+        final View convertView = this.convertView(position, view, parent);
 
         final Routine.Category category = Routine.Category.valueOf(getItem(position));
-        final CircleImageView thumbnail = (CircleImageView) resultView.findViewById(R.id.thumbnail);
+        final CircleImageView thumbnail = (CircleImageView) convertView.findViewById(R.id.thumbnail);
         thumbnail.setImageResource(category.getIcon());
 
-        return resultView;
+        return convertView;
+    }
+
+    private View convertView(final int position, final View view, final ViewGroup parent) {
+        if (view == null) {
+            return super.getView(position, null, parent);
+        }
+
+        return view;
     }
 
     public void addCategories(final Routine.Category[] categories) {

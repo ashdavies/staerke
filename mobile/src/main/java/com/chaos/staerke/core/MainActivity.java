@@ -16,6 +16,8 @@ import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
+import java.util.ArrayList;
+
 import butterknife.InjectView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -72,7 +74,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setupRoutines() {
-        this.routineAdapter = new RoutineAdapter(this);
+        this.routineAdapter = new RoutineAdapter(this, new ArrayList<Routine>());
         this.routineListView.setOnItemClickListener(this.routineAdapter);
         this.routineListView.setAdapter(this.routineAdapter);
         this.routineListView.setOnTouchListener(new ShowHideOnScroll(this.actionButton));

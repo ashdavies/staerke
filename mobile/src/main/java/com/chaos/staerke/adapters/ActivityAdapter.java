@@ -1,7 +1,6 @@
 package com.chaos.staerke.adapters;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,26 +22,27 @@ public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemCli
     private Context context;
 
     public ActivityAdapter(final Context context, final List<Activity> activities) {
-        super(context, R.layout.card_activity, activities);
+        super(context, R.layout.card_activity, R.id.name, activities);
         this.context = context;
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
-        final View resultView;
-
-        if (convertView == null) {
-            resultView = LayoutInflater.from(this.context).inflate(R.layout.card_activity, parent, false);
-        } else {
-            resultView = convertView;
-        }
+    public View getView(final int position, final View view, final ViewGroup parent) {
+        final View convertView = this.convertView(position, view, parent);
 
         final Activity activity = getItem(position);
-
-        final TextView name = (TextView) resultView.findViewById(R.id.name);
+        final TextView name = (TextView) convertView.findViewById(R.id.name);
         name.setText(activity.name);
 
-        return resultView;
+        return convertView;
+    }
+
+    private View convertView(final int position, final View view, final ViewGroup parent) {
+        if (view == null) {
+            return super.getView(position, null, parent);
+        }
+
+        return view;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class ActivitiesActivity extends BaseActivity implements GoogleApiClient.
     private List<ActionInterface> items;
 
     @InjectView(R.id.list)
-    private ListView list;
+    protected ListView list;
 
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

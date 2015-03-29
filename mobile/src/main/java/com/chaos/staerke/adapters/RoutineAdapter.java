@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import com.chaos.staerke.models.Routine;
 import com.google.gson.Gson;
 
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -28,35 +26,29 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClickListener {
     private Context context;
 
-    public RoutineAdapter(final Context context) {
-        super(context, R.layout.card_routine, new ArrayList<Routine>());
+    public RoutineAdapter(final Context context, final List<Routine> routines) {
+        super(context, R.layout.card_routine, R.id.name, routines);
         this.context = context;
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
-        final View resultView;
-
-        if (convertView == null) {
-            resultView = LayoutInflater.from(this.context).inflate(R.layout.card_routine, parent, false);
-        } else {
-            resultView = convertView;
-        }
+    public View getView(final int position, final View view, final ViewGroup parent) {
+        final View convertView = this.convertView(position, view, parent);
 
         final Routine routine = this.getItem(position);
-        final CircleImageView thumbnail = (CircleImageView) resultView.findViewById(R.id.thumbnail);
+        final CircleImageView thumbnail = (CircleImageView) convertView.findViewById(R.id.thumbnail);
         final Bitmap bitmap = BitmapFactory.decodeResource(this.context.getResources(), routine.category.getIcon());
         thumbnail.setImageBitmap(bitmap);
 
-        final TextView name = (TextView) resultView.findViewById(R.id.name);
+        final TextView name = (TextView) convertView.findViewById(R.id.name);
         name.setText(routine.name);
 
-        final TextView category = (TextView) resultView.findViewById(R.id.category);
+        final TextView category = (TextView) convertView.findViewById(R.id.category);
         if (routine.category != null) {
             category.setText(routine.category.name());
         }
 
-        final CheckBox checkbox = (CheckBox) resultView.findViewById(R.id.favourite);
+        final CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.favourite);
         checkbox.setChecked(routine.isFavourite());
         checkbox.setOnClickListener(new OnClickListener() {
             @Override
@@ -67,7 +59,15 @@ public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClick
             }
         });
 
-        return resultView;
+        return convertView;
+    }
+
+    private View convertView(final int position, final View view, final ViewGroup parent) {
+        if (view == null) {
+            return super.getView(position, null, parent);
+        }
+
+        return view;
     }
 
     @Override
