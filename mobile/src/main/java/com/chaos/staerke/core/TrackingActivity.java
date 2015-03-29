@@ -13,6 +13,6 @@ public class TrackingActivity extends BaseActivity {
 
     @Override
     public int onCreateViewId() {
-        return R.layout.activity_routine;
+        return R.layout.activity_tracking;
     }
 }
