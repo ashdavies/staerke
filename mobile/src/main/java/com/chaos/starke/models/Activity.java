@@ -3,20 +3,15 @@ package com.chaos.starke.models;
 import com.orm.SugarRecord;
 
 public class Activity extends SugarRecord<Activity> {
-
     public String name;
     public String description;
 
     public Routine routine;
 
     public Rating rating;
-
-    public enum Rating {Novice, Beginner, Intermediate, Advanced, Hardcode}
-
     public int sets;
     public int repetitions;
     public int weight;
-
     public Activity() {
     }
 
@@ -28,5 +23,7 @@ public class Activity extends SugarRecord<Activity> {
         this.weight = weight;
 
     }
+
+    public enum Rating {Novice, Beginner, Intermediate, Advanced, Hardcode}
 
 }

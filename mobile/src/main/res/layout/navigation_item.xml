@@ -6,21 +6,21 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/thumbnail"
-        android:contentDescription="@string/application"
         android:layout_width="@dimen/list_item_thumbnail"
         android:layout_height="@dimen/list_item_thumbnail"
         android:layout_margin="@dimen/list_item_margin"
+        android:contentDescription="@string/application"
         android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/title"
+        style="@android:style/TextAppearance.Small"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/standard_margin"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
         android:singleLine="true"
-        android:fontFamily="sans-serif-condensed"
-        android:textColor="@color/primary_text"
-        style="@android:style/TextAppearance.Small" />
+        android:textColor="@color/primary_text" />
 
 </LinearLayout>

@@ -37,26 +37,26 @@ public class MainActivity extends ActionBarActivity {
     private FloatingActionButton actionButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.activity_main);
 
-        setupActionBar(getSupportActionBar());
-        setupActionButton();
-        setupNavigation();
-        setupRoutines();
+        this.setupActionBar(getSupportActionBar());
+        this.setupActionButton();
+        this.setupNavigation();
+        this.setupRoutines();
     }
 
-    private void setupActionBar(ActionBar actionBar) {
+    private void setupActionBar(final ActionBar actionBar) {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupActionButton() {
-        actionButton = (FloatingActionButton) findViewById(R.id.create);
-        actionButton.setOnClickListener(new OnClickListener() {
+        this.actionButton = (FloatingActionButton) findViewById(R.id.create);
+        this.actionButton.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 CreateRoutineDialog dialog = new CreateRoutineDialog();
                 dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
             }
@@ -64,32 +64,33 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void setupNavigation() {
-        navigationAdapter = new NavigationAdapter(this);
-        navigationAdapter.addCategories(Routine.Category.values());
+        this.navigationAdapter = new NavigationAdapter(this);
+        this.navigationAdapter.addCategories(Routine.Category.values());
 
-        navigationList = (ListView) findViewById(R.id.navigation_drawer);
-        navigationList.setAdapter(navigationAdapter);
-        navigationList.setOnItemClickListener(navigationAdapter);
+        this.navigationList = (ListView) findViewById(R.id.navigation_drawer);
+        this.navigationList.setAdapter(this.navigationAdapter);
+        this.navigationList.setOnItemClickListener(this.navigationAdapter);
 
-        navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationToggle = new ActionBarDrawerToggle(this, navigationLayout, R.string.application, R.string.application);
-        navigationToggle.setDrawerIndicatorEnabled(true);
-        navigationLayout.setDrawerListener(navigationToggle);
+        this.navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        this.navigationToggle = new ActionBarDrawerToggle(this, this.navigationLayout, R.string.application, R.string.application);
+        this.navigationToggle.setDrawerIndicatorEnabled(true);
+        this.navigationLayout.setDrawerListener(this.navigationToggle);
     }
 
     private void setupRoutines() {
-        routineAdapter = new RoutineAdapter(this);
-        routineListView = (ListView) findViewById(R.id.routines);
-        routineListView.setOnItemClickListener(routineAdapter);
-        routineListView.setAdapter(routineAdapter);
-        routineListView.setOnTouchListener(new ShowHideOnScroll(actionButton));
+        this.routineAdapter = new RoutineAdapter(this);
+        this.routineListView = (ListView) findViewById(R.id.routines);
+        this.routineListView.setOnItemClickListener(this.routineAdapter);
+        this.routineListView.setAdapter(this.routineAdapter);
+        this.routineListView.setOnTouchListener(new ShowHideOnScroll(this.actionButton));
 
-        if (hasNoRoutines()) {
-            routineAdapter.importFromResource(new Gson(), R.raw.routines);
+        if (this.hasNoRoutines()) {
+            this.routineAdapter.importFromResource(new Gson(), R.raw.routines);
         }
 
-        for (Routine.Category category : Routine.Category.values())
-            routineAdapter.addRoutinesFromCategory(category);
+        for (final Routine.Category category : Routine.Category.values()) {
+            this.routineAdapter.addRoutinesFromCategory(category);
+        }
     }
 
     private boolean hasNoRoutines() {
@@ -97,34 +98,32 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
+    protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        navigationToggle.syncState();
+        this.navigationToggle.syncState();
     }
 
     @Override
-    public void onConfigurationChanged(Configuration configuration) {
+    public void onConfigurationChanged(final Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        navigationToggle.onConfigurationChanged(configuration);
+        this.navigationToggle.onConfigurationChanged(configuration);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        this.getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (navigationToggle.onOptionsItemSelected(item)) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (this.navigationToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         switch (item.getItemId()) {
-
             case R.id.activities:
-                startActivity(new Intent(this, ActivitiesActivity.class));
+                this.startActivity(new Intent(this, ActivitiesActivity.class));
                 return true;
 
             default:

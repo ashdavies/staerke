@@ -14,31 +14,34 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NavigationAdapter extends ArrayAdapter<String> implements AdapterView.OnItemClickListener {
-
-    public NavigationAdapter(Context context) {
+    public NavigationAdapter(final Context context) {
         super(context, R.layout.navigation_item, R.id.title, new ArrayList<String>());
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
+        final View resultView;
 
-        convertView = super.getView(position, convertView, parent);
+        if (convertView == null) {
+            resultView = super.getView(position, convertView, parent);
+        } else {
+            resultView = convertView;
+        }
 
-        Routine.Category category = Routine.Category.valueOf(getItem(position));
-        CircleImageView thumbnail = (CircleImageView) convertView.findViewById(R.id.thumbnail);
+        final Routine.Category category = Routine.Category.valueOf(getItem(position));
+        final CircleImageView thumbnail = (CircleImageView) resultView.findViewById(R.id.thumbnail);
         thumbnail.setImageResource(category.getIcon());
 
-        return convertView;
-
+        return resultView;
     }
 
-    public void addCategories(Routine.Category[] categories) {
-        for (Routine.Category category : categories) add(category.name());
+    public void addCategories(final Routine.Category[] categories) {
+        for (Routine.Category category : categories) {
+            add(category.name());
+        }
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
+    public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
     }
-
 }

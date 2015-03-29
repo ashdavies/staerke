@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.backup.BackupManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,73 +31,73 @@ public class CreateActivityDialog extends DialogFragment {
     private String[] repetitionValues;
     private String[] setValues;
 
-    public CreateActivityDialog() {}
-    public CreateActivityDialog(Routine routine, Activity activity) {
-        super();
+    public CreateActivityDialog() {
+    }
+
+    public CreateActivityDialog(final Routine routine, final Activity activity) {
         this.routine = routine;
         this.activity = activity;
     }
 
+    @NonNull
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(final Bundle savedInstanceState) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View view = inflater.inflate(R.layout.dialog_create_activity, null);
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_create_activity, null);
+        this.name = (Spinner) view.findViewById(R.id.name);
+        final String[] activities = getResources().getStringArray(R.array.activities);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, activities);
+        this.name.setAdapter(adapter);
 
-        name = (Spinner) view.findViewById(R.id.name);
-        String[] activities = getResources().getStringArray(R.array.activities);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, activities);
-        name.setAdapter(adapter);
+        this.weight = (NumberPicker) view.findViewById(R.id.weight);
+        this.weightValues = new String[45];
+        for (int i = 0; i < this.weightValues.length; i++) this.weightValues[i] = Integer.toString(i * 5);
+        this.weight.setMinValue(0);
+        this.weight.setMaxValue(this.weightValues.length - 1);
+        this.weight.setWrapSelectorWheel(false);
+        this.weight.setDisplayedValues(this.weightValues);
 
-        weight = (NumberPicker) view.findViewById(R.id.weight);
-        weightValues = new String[45];
-        for (int i = 0; i < weightValues.length; i++) weightValues[i] = Integer.toString(i * 5);
-        weight.setMinValue(0);
-        weight.setMaxValue(weightValues.length - 1);
-        weight.setWrapSelectorWheel(false);
-        weight.setDisplayedValues(weightValues);
+        this.repetitions = (NumberPicker) view.findViewById(R.id.repetitions);
+        this.repetitionValues = new String[30];
+        for (int i = 0; i < this.repetitionValues.length; i++) this.repetitionValues[i] = Integer.toString(i);
+        this.repetitions.setMinValue(0);
+        this.repetitions.setMaxValue(this.repetitionValues.length - 1);
+        this.repetitions.setWrapSelectorWheel(false);
+        this.repetitions.setDisplayedValues(this.repetitionValues);
 
-        repetitions = (NumberPicker) view.findViewById(R.id.repetitions);
-        repetitionValues = new String[30];
-        for (int i = 0; i < repetitionValues.length; i++) repetitionValues[i] = Integer.toString(i);
-        repetitions.setMinValue(0);
-        repetitions.setMaxValue(repetitionValues.length - 1);
-        repetitions.setWrapSelectorWheel(false);
-        repetitions.setDisplayedValues(repetitionValues);
+        this.sets = (NumberPicker) view.findViewById(R.id.sets);
+        this.setValues = new String[15];
+        for (int i = 0; i < this.setValues.length; i++) this.setValues[i] = Integer.toString(i);
+        this.sets.setMinValue(0);
+        this.sets.setMaxValue(this.setValues.length - 1);
+        this.sets.setWrapSelectorWheel(false);
+        this.sets.setDisplayedValues(this.setValues);
 
-        sets = (NumberPicker) view.findViewById(R.id.sets);
-        setValues = new String[15];
-        for (int i = 0; i < setValues.length; i++) setValues[i] = Integer.toString(i);
-        sets.setMinValue(0);
-        sets.setMaxValue(setValues.length - 1);
-        sets.setWrapSelectorWheel(false);
-        sets.setDisplayedValues(setValues);
-
-        if (activity != null) {
-
+        if (this.activity != null) {
             for (int i = 0; i < activities.length; i++)
-                if (activities[i].equals(activity.name)) {
-                    name.setSelection(i, true);
+                if (activities[i].equals(this.activity.name)) {
+                    this.name.setSelection(i, true);
                     break;
                 }
 
-            for (int i = 0; i < weightValues.length; i++)
-                if (weightValues[i].equals(String.valueOf(activity.weight))) {
-                    weight.setValue(i);
+            for (int i = 0; i < this.weightValues.length; i++)
+                if (this.weightValues[i].equals(String.valueOf(this.activity.weight))) {
+                    this.weight.setValue(i);
                     break;
                 }
 
-            for (int i = 0; i < repetitionValues.length; i++)
-                if (repetitionValues[i].equals(String.valueOf(activity.repetitions))) {
-                    repetitions.setValue(i);
+            for (int i = 0; i < this.repetitionValues.length; i++)
+                if (this.repetitionValues[i].equals(String.valueOf(this.activity.repetitions))) {
+                    this.repetitions.setValue(i);
                     break;
                 }
 
-            for (int i = 0; i < setValues.length; i++)
-                if (setValues[i].equals(String.valueOf(activity.sets))) {
-                    sets.setValue(i);
+            for (int i = 0; i < this.setValues.length; i++)
+                if (this.setValues[i].equals(String.valueOf(this.activity.sets))) {
+                    this.sets.setValue(i);
                     break;
                 }
 
@@ -107,7 +108,6 @@ public class CreateActivityDialog extends DialogFragment {
                 .setPositiveButton(activity == null ? R.string.action_create : R.string.action_edit, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
-
                         if (activity == null) {
                             activity = new Activity();
                         }
@@ -132,7 +132,5 @@ public class CreateActivityDialog extends DialogFragment {
 
         // Create the AlertDialog object and return it
         return builder.create();
-
     }
-
 }

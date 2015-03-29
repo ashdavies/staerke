@@ -6,7 +6,7 @@ android {
     buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.chaos.starke"
+        applicationId 'com.chaos.starke'
 
         minSdkVersion project.minSdkVersion
         targetSdkVersion project.targetSdkVersion
@@ -19,6 +19,10 @@ android {
         release {
             minifyEnabled false
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class CreateRoutineDialog extends DialogFragment {
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(final Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -54,7 +54,5 @@ public class CreateRoutineDialog extends DialogFragment {
                 });
 
         return builder.create();
-
     }
-
 }

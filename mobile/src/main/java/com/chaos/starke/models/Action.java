@@ -3,7 +3,6 @@ package com.chaos.starke.models;
 import com.orm.SugarRecord;
 
 public class Action extends SugarRecord<Action> {
-
     public String name;
 
     public int weight;

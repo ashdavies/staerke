@@ -4,11 +4,24 @@ import com.chaos.starke.R;
 import com.orm.SugarRecord;
 
 public class Routine extends SugarRecord<Routine> {
-
     public String name;
     public String description;
 
     public Category category;
+    public boolean favourite;
+
+    public Routine() {
+    }
+
+    public Routine(String name, Category category) {
+        this.name = name;
+        this.category = category;
+        this.favourite = false;
+    }
+
+    public boolean isFavourite() {
+        return favourite;
+    }
 
     public enum Category implements CategoryWithIcon {
         Strength {
@@ -40,17 +53,6 @@ public class Routine extends SugarRecord<Routine> {
 
     private interface CategoryWithIcon {
         public int getIcon();
-    }
-
-    public Boolean favourite;
-
-    public Routine() {
-    }
-
-    public Routine(String name, Category category) {
-        this.name = name;
-        this.category = category;
-        this.favourite = false;
     }
 
 }

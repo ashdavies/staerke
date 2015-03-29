@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <item
-    android:id="@+id/activities"
-    android:title="@string/activity_activities"
-    app:showAsAction="always" />
+    <item
+        android:id="@+id/activities"
+        android:title="@string/activity_activities"
+        app:showAsAction="always" />
 
 </menu>

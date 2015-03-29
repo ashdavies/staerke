@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
-	<array name="activities">
-    	<item>Abdominal Crunch</item>
+    <array name="activities">
+        <item>Abdominal Crunch</item>
         <item>Back Extension</item>
         <item>Bench Press</item>
         <item>Bent Over Row</item>

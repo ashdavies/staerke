@@ -11,12 +11,11 @@ import com.chaos.starke.adapters.items.ActionInterface;
 import java.util.List;
 
 public class ActionAdapter extends ArrayAdapter<ActionInterface> {
-
     private LayoutInflater inflater;
 
-    public ActionAdapter(Context context, List<ActionInterface> items) {
+    public ActionAdapter(final Context context, final List<ActionInterface> items) {
         super(context, 0, items);
-        inflater = LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -25,13 +24,12 @@ public class ActionAdapter extends ArrayAdapter<ActionInterface> {
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return getItem(position).getViewType();
+    public int getItemViewType(final int position) {
+        return this.getItem(position).getViewType();
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return getItem(position).getView(inflater, convertView);
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
+        return this.getItem(position).getView(this.inflater, convertView);
     }
-
 }

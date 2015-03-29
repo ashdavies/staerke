@@ -20,6 +20,10 @@ android {
             minifyEnabled false
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -37,4 +41,12 @@ dependencies {
 
     compile project(':shared')
     wearApp project(':wear')
+}
+
+task checkstyle(type: Checkstyle) {
+    configFile file("${project.rootDir}/config/checkstyle/checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files()
 }

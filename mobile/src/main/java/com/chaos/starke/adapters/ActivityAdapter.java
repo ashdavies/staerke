@@ -18,47 +18,51 @@ import com.chaos.starke.models.Activity;
 
 import java.util.List;
 
-public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemClickListener, AdapterView.OnItemLongClickListener {
-
+public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemClickListener,
+        AdapterView.OnItemLongClickListener {
     private Context context;
 
-    public ActivityAdapter(Context context, List<Activity> activities) {
+    public ActivityAdapter(final Context context, final List<Activity> activities) {
         super(context, R.layout.card_activity, activities);
         this.context = context;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
+        final View resultView;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.card_activity, parent, false);
+            resultView = LayoutInflater.from(this.context).inflate(R.layout.card_activity, parent, false);
+        } else {
+            resultView = convertView;
         }
 
-        Activity activity = getItem(position);
+        final Activity activity = getItem(position);
 
-        TextView name = (TextView) convertView.findViewById(R.id.name);
+        final TextView name = (TextView) resultView.findViewById(R.id.name);
         name.setText(activity.name);
 
-        TextView description = (TextView) convertView.findViewById(R.id.description);
+        final TextView description = (TextView) resultView.findViewById(R.id.description);
         description.setText(activity.weight + " Kg x " + activity.repetitions + " x " + activity.sets);
 
-        return convertView;
-
+        return resultView;
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        new Action(getItem(position)).save();
-        String message = context.getResources().getString(R.string.action_added);
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+        new Action(this.getItem(position)).save();
+        final String message = this.context.getResources().getString(R.string.action_added);
+        Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-        final Activity activity = getItem(position);
-        RoutineActivity routineActivity = (RoutineActivity) context;
-        CreateActivityDialog dialog = new CreateActivityDialog(activity.routine, activity);
+    public boolean onItemLongClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
+        final Activity activity = this.getItem(position);
+        final RoutineActivity routineActivity = (RoutineActivity) this.context;
+        final CreateActivityDialog dialog = new CreateActivityDialog(activity.routine, activity);
+
         dialog.show(routineActivity.getSupportFragmentManager(), dialog.getClass().getName());
+
         return false;
     }
 }

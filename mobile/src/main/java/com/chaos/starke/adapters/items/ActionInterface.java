@@ -4,13 +4,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 public interface ActionInterface {
+    int getViewType();
 
-    public enum Row {
+    View getView(final LayoutInflater inflater, final View view);
+
+    enum Row {
         Header, Entry
     }
-
-    public int getViewType();
-
-    public View getView(LayoutInflater inflater, View view);
-
 }

@@ -22,7 +22,6 @@ import com.shamanland.fab.ShowHideOnScroll;
 import java.util.List;
 
 public class RoutineActivity extends ActionBarActivity {
-
     private static final int TRACKING_NOTIFICATION_ID = 16;
 
     private ActivityAdapter activityAdapter;
@@ -33,42 +32,42 @@ public class RoutineActivity extends ActionBarActivity {
     private FloatingActionButton actionButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_routine);
+        this.setContentView(R.layout.activity_routine);
 
-        routine = getRoutineFromIntent(getIntent());
-        activityAdapter = new ActivityAdapter(this, getActivitiesForRoutine(routine));
+        this.routine = this.getRoutineFromIntent(this.getIntent());
+        this.activityAdapter = new ActivityAdapter(this, this.getActivitiesForRoutine(this.routine));
 
-        setupActionBar(getSupportActionBar());
-        setupActionButton(getSupportFragmentManager());
-        setupActivitiesList(activityAdapter);
-        //setupNotification(this);
+        this.setupActionBar(this.getSupportActionBar());
+        this.setupActionButton(this.getSupportFragmentManager());
+        this.setupActivitiesList(this.activityAdapter);
+        //this.setupNotification(this);
     }
 
-    private void setupActionBar(ActionBar actionBar) {
+    private void setupActionBar(final ActionBar actionBar) {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupActionButton(final FragmentManager fragmentManager) {
-        actionButton = (FloatingActionButton) findViewById(R.id.create);
-        actionButton.setOnClickListener(new OnClickListener() {
+        this.actionButton = (FloatingActionButton) this.findViewById(R.id.create);
+        this.actionButton.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View view) {
-                CreateActivityDialog dialog = new CreateActivityDialog(routine, null);
+            public void onClick(final View view) {
+                CreateActivityDialog dialog = new CreateActivityDialog(RoutineActivity.this.routine, null);
                 dialog.show(fragmentManager, dialog.getClass().getName());
             }
         });
     }
 
     private void setupActivitiesList(final ActivityAdapter activityAdapter) {
-        activityListView = (ListView) findViewById(R.id.activities);
-        activityListView.setAdapter(activityAdapter);
-        activityListView.setOnItemClickListener(activityAdapter);
-        activityListView.setOnItemLongClickListener(activityAdapter);
-        activityListView.setOnTouchListener(new ShowHideOnScroll(actionButton));
+        this.activityListView = (ListView) findViewById(R.id.activities);
+        this.activityListView.setAdapter(activityAdapter);
+        this.activityListView.setOnItemClickListener(activityAdapter);
+        this.activityListView.setOnItemLongClickListener(activityAdapter);
+        this.activityListView.setOnTouchListener(new ShowHideOnScroll(this.actionButton));
     }
 
     private void setupNotification(final RoutineActivity routineActivity) {
@@ -81,12 +80,12 @@ public class RoutineActivity extends ActionBarActivity {
         notificationManager.notify(TRACKING_NOTIFICATION_ID, notificationBuilder.build());
     }
 
-    private Routine getRoutineFromIntent(Intent intent) {
+    private Routine getRoutineFromIntent(final Intent intent) {
         long routineId = intent.getLongExtra("routine", 0);
         return Routine.findById(Routine.class, routineId);
     }
 
-    private List<Activity> getActivitiesForRoutine(Routine routine) {
+    private List<Activity> getActivitiesForRoutine(final Routine routine) {
         String routineId = String.valueOf(routine.getId());
         return Activity.find(Activity.class, "routine = ?", new String[]{routineId});
     }

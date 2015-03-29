@@ -14,7 +14,7 @@ public class ActionEntry implements ActionInterface {
 
     private final Action routineAction;
 
-    public ActionEntry(Action routineAction) {
+    public ActionEntry(final Action routineAction) {
         this.routineAction = routineAction;
     }
 
@@ -24,23 +24,26 @@ public class ActionEntry implements ActionInterface {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView) {
+    public View getView(final LayoutInflater inflater, final View convertView) {
+        final View resultView;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.card_action, null);
+            resultView = inflater.inflate(R.layout.card_action, null);
+        } else {
+            resultView = convertView;
         }
 
-        TextView date = (TextView) convertView.findViewById(R.id.date);
+        TextView date = (TextView) resultView.findViewById(R.id.date);
         SimpleDateFormat format = new SimpleDateFormat("kk:mm", Locale.UK);
-        date.setText(format.format(routineAction.date));
+        date.setText(format.format(this.routineAction.date));
 
-        TextView name = (TextView) convertView.findViewById(R.id.name);
-        name.setText(routineAction.name);
+        TextView name = (TextView) resultView.findViewById(R.id.name);
+        name.setText(this.routineAction.name);
 
-        TextView description = (TextView) convertView.findViewById(R.id.description);
-        description.setText(routineAction.weight + " Kg x " + routineAction.repetitions + " x " + routineAction.sets);
+        TextView description = (TextView) resultView.findViewById(R.id.description);
+        description.setText(this.routineAction.weight + " Kg x " + this.routineAction.repetitions + " x " + this.routineAction.sets);
 
-        return convertView;
+        return resultView;
 
     }
 }

@@ -7,10 +7,9 @@ import android.widget.TextView;
 import com.chaos.starke.R;
 
 public class ActionHeader implements ActionInterface {
+    private final String name;
 
-    private String name;
-
-    public ActionHeader(String name) {
+    public ActionHeader(final String name) {
         this.name = name;
     }
 
@@ -20,16 +19,19 @@ public class ActionHeader implements ActionInterface {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView) {
+    public View getView(final LayoutInflater inflater, final View convertView) {
+        final View resultView;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.card_action_header, null);
+            resultView = inflater.inflate(R.layout.card_action_header, null);
+        } else {
+            resultView = convertView;
         }
 
-        TextView name = (TextView) convertView.findViewById(R.id.name);
+        TextView name = (TextView) resultView.findViewById(R.id.name);
         name.setText(this.name);
 
-        return convertView;
+        return resultView;
 
     }
 
