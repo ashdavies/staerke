@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Staerke" parent="Theme.AppCompat">
+    <style name="Theme.Staerke" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@color/background</item>
 
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <item name="actionBarStyle">@style/Theme.Staerke.ActionBar</item>
+        <item name="drawerArrowStyle">@style/Theme.Staerke.Drawer</item>
         <item name="floatingActionButtonStyle">@style/Theme.Staerke.Fab</item>
+        <item name="android:buttonStyle">@style/Theme.Staerke.Button</item>
+    </style>
+
+    <style name="Theme.Staerke.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Staerke.Drawer" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
     </style>
 
     <style name="Theme.Staerke.Fab" parent="FloatingActionButton">
         <item name="floatingActionButtonColor">@color/accent</item>
+    </style>
+
+    <style name="Theme.Staerke.Button" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:background">@color/accent</item>
+        <item name="android:layout_marginLeft">@dimen/standard_margin</item>
+        <item name="android:layout_marginTop">@dimen/standard_margin</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin</item>
+        <item name="android:layout_marginBottom">@dimen/standard_margin</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>
