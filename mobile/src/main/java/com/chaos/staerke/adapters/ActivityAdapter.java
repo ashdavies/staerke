@@ -1,18 +1,18 @@
 package com.chaos.staerke.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chaos.staerke.R;
 import com.chaos.staerke.core.RoutineActivity;
+import com.chaos.staerke.core.TrackingActivity;
 import com.chaos.staerke.dialogs.CreateActivityDialog;
-import com.chaos.staerke.models.Action;
 import com.chaos.staerke.models.Activity;
 
 import java.util.List;
@@ -47,9 +47,12 @@ public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemCli
 
     @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-        new Action(this.getItem(position)).save();
-        final String message = this.context.getResources().getString(R.string.action_added);
-        Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show();
+        final Activity activity = this.getItem(position);
+
+        final Intent intent = new Intent(this.context, TrackingActivity.class);
+        intent.putExtra("activity", activity.getId());
+
+        this.context.startActivity(intent);
     }
 
     @Override

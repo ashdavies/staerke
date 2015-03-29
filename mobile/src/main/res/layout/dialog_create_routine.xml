@@ -9,15 +9,12 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standard_margin"
         android:hint="@string/dialog_create_routine_name"
         android:inputType="textCapWords" />
 
     <Spinner
         android:id="@+id/category"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="@dimen/standard_margin" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

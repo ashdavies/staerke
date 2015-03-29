@@ -55,6 +55,15 @@
                 android:value="com.chaos.staerke.core.MainActivity" />
         </activity>
 
+        <activity
+            android:name="com.chaos.staerke.core.TrackingActivity"
+            android:label="@string/activity_tracking"
+            android:parentActivityName="com.chaos.staerke.core.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chaos.staerke.core.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
