@@ -31,7 +31,6 @@ public class ActivitiesActivity extends ListActivity implements GoogleApiClient.
     private ActionAdapter adapter;
     private List<ActionInterface> items;
 
-    @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_activities);

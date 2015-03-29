@@ -2,50 +2,58 @@ package com.chaos.starke.core;
 
 import android.app.Activity;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.chaos.starke.R;
 
-public class TrackingActivity extends Activity implements SensorEventListener {
-    private SensorManager sensorManager;
-    private Sensor accelerometerSensor;
+public class TrackingActivity extends Activity implements MovementDetector.RepListener {
+    private SensorManager manager;
+    private Sensor sensor;
 
-    private TrackingClient trackingClient;
+    private MovementDetector detector;
+
+    private TextView reading;
+
+    private int steps = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
 
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-        setupTrackingService();
-        setupSensors(sensorManager);
-        registerSensorListeners(sensorManager, this);
+        setupSensors(manager);
+        setupDetector();
+        setupViews();
+
+        registerSensorListeners(manager, detector);
     }
 
-    private void setupTrackingService() {
-        trackingClient = new TrackingClient(this);
+    private void setupDetector() {
+        detector = new MovementDetector();
+        detector.setSensitivity(10.0f);
+        detector.addRepListener(this);
+    }
+
+    private void setupViews() {
+        reading = (TextView) findViewById(R.id.reading);
     }
 
     private void setupSensors(SensorManager sensorManager) {
-        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }
 
     private void registerSensorListeners(SensorManager sensorManager, SensorEventListener sensorEventListener) {
-        sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
-        trackingClient.send(sensorEvent.sensor.getType(), sensorEvent.accuracy, sensorEvent.timestamp, sensorEvent.values);
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
+    public void onRep() {
+        steps++;
+        reading.setText("S:" + steps);
     }
 }

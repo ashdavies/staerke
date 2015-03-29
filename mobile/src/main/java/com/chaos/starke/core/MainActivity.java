@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ListView;
 
 import com.chaos.starke.R;
@@ -23,7 +22,6 @@ import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
 public class MainActivity extends ActionBarActivity {
-
     private static final long NO_ROUTINES = 0;
 
     private RoutineAdapter routineAdapter;
@@ -54,7 +52,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void setupActionButton() {
         this.actionButton = (FloatingActionButton) findViewById(R.id.create);
-        this.actionButton.setOnClickListener(new OnClickListener() {
+        this.actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 CreateRoutineDialog dialog = new CreateRoutineDialog();
