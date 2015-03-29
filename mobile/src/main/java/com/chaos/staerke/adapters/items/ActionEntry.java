@@ -1,11 +1,11 @@
-package com.chaos.stark.adapters.items;
+package com.chaos.staerke.adapters.items;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.chaos.stark.R;
-import com.chaos.stark.models.Action;
+import com.chaos.staerke.R;
+import com.chaos.staerke.models.Action;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

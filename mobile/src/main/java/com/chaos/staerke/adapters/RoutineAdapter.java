@@ -1,4 +1,4 @@
-package com.chaos.stark.adapters;
+package com.chaos.staerke.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.chaos.stark.R;
-import com.chaos.stark.core.RoutineActivity;
-import com.chaos.stark.models.Routine;
+import com.chaos.staerke.R;
+import com.chaos.staerke.core.RoutineActivity;
+import com.chaos.staerke.models.Routine;
 import com.google.gson.Gson;
 
 import java.io.InputStreamReader;

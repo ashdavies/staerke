@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.chaos.stark">
+    package="com.chaos.staerke">
 
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher_square"
         android:label="@string/application"
-        android:theme="@style/Theme.Stark"
+        android:theme="@style/Theme.Staerke"
         tools:replace="android:icon,android:label">
 
         <meta-data
             android:name="DATABASE"
-            android:value="stark.db" />
+            android:value="staerke.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />
@@ -22,14 +22,14 @@
             android:value="true" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="com.chaos.stark" />
+            android:value="com.chaos.staerke" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".core.MainActivity"
+            android:name="com.chaos.staerke.core.MainActivity"
             android:label="@string/application">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,21 +38,21 @@
         </activity>
 
         <activity
-            android:name=".core.RoutineActivity"
+            android:name="com.chaos.staerke.core.RoutineActivity"
             android:label="@string/application"
-            android:parentActivityName=".core.MainActivity">
+            android:parentActivityName="com.chaos.staerke.core.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".core.MainActivity" />
+                android:value="com.chaos.staerke.core.MainActivity" />
         </activity>
 
         <activity
-            android:name=".core.ActivitiesActivity"
+            android:name="com.chaos.staerke.core.ActivitiesActivity"
             android:label="@string/activity_activities"
-            android:parentActivityName=".core.MainActivity">
+            android:parentActivityName="com.chaos.staerke.core.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".core.MainActivity" />
+                android:value="com.chaos.staerke.core.MainActivity" />
         </activity>
 
     </application>

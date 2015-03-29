@@ -1,4 +1,4 @@
-package com.chaos.stark.adapters;
+package com.chaos.staerke.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chaos.stark.R;
-import com.chaos.stark.core.RoutineActivity;
-import com.chaos.stark.dialogs.CreateActivityDialog;
-import com.chaos.stark.models.Action;
-import com.chaos.stark.models.Activity;
+import com.chaos.staerke.R;
+import com.chaos.staerke.core.RoutineActivity;
+import com.chaos.staerke.dialogs.CreateActivityDialog;
+import com.chaos.staerke.models.Action;
+import com.chaos.staerke.models.Activity;
 
 import java.util.List;
 

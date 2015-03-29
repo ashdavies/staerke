@@ -1,4 +1,4 @@
-package com.chaos.stark.core;
+package com.chaos.staerke.core;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -7,11 +7,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
 import android.widget.ListView;
 
-import com.chaos.stark.R;
-import com.chaos.stark.adapters.NavigationAdapter;
-import com.chaos.stark.adapters.RoutineAdapter;
-import com.chaos.stark.dialogs.CreateRoutineDialog;
-import com.chaos.stark.models.Routine;
+import com.chaos.staerke.R;
+import com.chaos.staerke.adapters.NavigationAdapter;
+import com.chaos.staerke.adapters.RoutineAdapter;
+import com.chaos.staerke.dialogs.CreateRoutineDialog;
+import com.chaos.staerke.models.Routine;
 import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;

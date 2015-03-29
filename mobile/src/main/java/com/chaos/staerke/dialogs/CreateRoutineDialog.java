@@ -1,4 +1,4 @@
-package com.chaos.stark.dialogs;
+package com.chaos.staerke.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.chaos.stark.R;
-import com.chaos.stark.models.Routine;
+import com.chaos.staerke.R;
+import com.chaos.staerke.models.Routine;
 
 import java.util.ArrayList;
 

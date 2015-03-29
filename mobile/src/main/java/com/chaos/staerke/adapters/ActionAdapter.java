@@ -1,4 +1,4 @@
-package com.chaos.stark.adapters;
+package com.chaos.staerke.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.chaos.stark.adapters.items.ActionInterface;
+import com.chaos.staerke.adapters.items.ActionInterface;
 
 import java.util.List;
 

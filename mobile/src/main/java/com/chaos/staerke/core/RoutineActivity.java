@@ -1,4 +1,4 @@
-package com.chaos.stark.core;
+package com.chaos.staerke.core;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
-import com.chaos.stark.R;
-import com.chaos.stark.adapters.ActivityAdapter;
-import com.chaos.stark.dialogs.CreateActivityDialog;
-import com.chaos.stark.models.Activity;
-import com.chaos.stark.models.Routine;
+import com.chaos.staerke.R;
+import com.chaos.staerke.adapters.ActivityAdapter;
+import com.chaos.staerke.dialogs.CreateActivityDialog;
+import com.chaos.staerke.models.Activity;
+import com.chaos.staerke.models.Routine;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 

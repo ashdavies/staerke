@@ -1,4 +1,4 @@
-package com.chaos.stark.adapters;
+package com.chaos.staerke.adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
-import com.chaos.stark.R;
-import com.chaos.stark.models.Routine;
+import com.chaos.staerke.R;
+import com.chaos.staerke.models.Routine;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,10 @@
-package com.chaos.stark.adapters.items;
+package com.chaos.staerke.adapters.items;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.chaos.stark.R;
+import com.chaos.staerke.R;
 
 public class ActionHeader implements ActionInterface {
     private final String name;

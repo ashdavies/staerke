@@ -1,4 +1,4 @@
-package com.chaos.stark.dialogs;
+package com.chaos.staerke.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,9 +12,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.chaos.stark.R;
-import com.chaos.stark.models.Activity;
-import com.chaos.stark.models.Routine;
+import com.chaos.staerke.R;
+import com.chaos.staerke.models.Activity;
+import com.chaos.staerke.models.Routine;
 
 public class CreateActivityDialog extends DialogFragment {
     private Routine routine;
