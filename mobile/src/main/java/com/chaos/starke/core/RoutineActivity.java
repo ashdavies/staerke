@@ -51,7 +51,7 @@ public class RoutineActivity extends ActionBarActivity {
     }
 
     private void setupActionButton(final FragmentManager fragmentManager) {
-        this.actionButton = (FloatingActionButton) this.findViewById(R.id.create);
+        this.actionButton = (FloatingActionButton) this.findViewById(R.id.action_button);
         this.actionButton.setOnClickListener(new OnClickListener() {
 
             @Override

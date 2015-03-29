@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,8 +19,10 @@ import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
     private static final long NO_ROUTINES = 0;
+
+    private FloatingActionButton actionButton;
 
     private RoutineAdapter routineAdapter;
     private ListView routineListView;
@@ -32,26 +32,23 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout navigationLayout;
     private ListView navigationList;
 
-    private FloatingActionButton actionButton;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
 
-        this.setupActionBar(getSupportActionBar());
         this.setupActionButton();
         this.setupNavigation();
         this.setupRoutines();
     }
 
-    private void setupActionBar(final ActionBar actionBar) {
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+    @Override
+    public int onCreateViewId() {
+        return R.layout.activity_main;
     }
 
     private void setupActionButton() {
-        this.actionButton = (FloatingActionButton) findViewById(R.id.create);
+        this.actionButton = (FloatingActionButton) findViewById(R.id.action_button);
         this.actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
