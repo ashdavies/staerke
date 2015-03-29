@@ -1,11 +1,10 @@
 package com.chaos.starke.core;
 
+import android.app.ActionBar;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.widget.ListView;
 
 import com.chaos.starke.R;
 import com.chaos.starke.adapters.ActionAdapter;
@@ -25,19 +24,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class ActivitiesActivity extends ActionBarActivity implements GoogleApiClient.ConnectionCallbacks {
+public class ActivitiesActivity extends ListActivity implements GoogleApiClient.ConnectionCallbacks {
     private final ActivitiesActivity context = this;
     private GoogleApiClient googleApiClient;
 
     private ActionAdapter adapter;
     private List<ActionInterface> items;
-    private ListView list;
 
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_activities);
 
-        this.setupActionBar(this.getSupportActionBar());
+        this.setupActionBar(this.getActionBar());
         this.setupActivities();
 
         this.setupWearListener(this);
@@ -49,10 +47,9 @@ public class ActivitiesActivity extends ActionBarActivity implements GoogleApiCl
     }
 
     private void setupActivities() {
-        final SimpleDateFormat format = new SimpleDateFormat("cccc dd LLLL", Locale.GERMANY);
+        SimpleDateFormat format = new SimpleDateFormat("cccc dd LLLL", Locale.GERMANY);
 
         this.items = new ArrayList<>();
-        this.list = (ListView) findViewById(R.id.list);
         final List<Action> actions = Select.from(Action.class).orderBy("date DESC").list();
         long last = 0;
 
@@ -65,7 +62,7 @@ public class ActivitiesActivity extends ActionBarActivity implements GoogleApiCl
         }
 
         this.adapter = new ActionAdapter(this.context, this.items);
-        this.list.setAdapter(this.adapter);
+        setListAdapter(this.adapter);
     }
 
     private void setupWearListener(final ActivitiesActivity context) {
