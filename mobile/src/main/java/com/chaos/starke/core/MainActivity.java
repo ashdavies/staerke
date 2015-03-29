@@ -1,12 +1,9 @@
 package com.chaos.starke.core;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -19,7 +16,6 @@ import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -40,12 +36,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RoutineAdapter routineAdapter;
     private NavigationAdapter navigationAdapter;
 
-    private ActionBarDrawerToggle navigationToggle;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         this.actionButton.setOnClickListener(this);
 
         this.setupNavigation();
@@ -70,9 +66,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.navigationList.setAdapter(this.navigationAdapter);
         this.navigationList.setOnItemClickListener(this.navigationAdapter);
 
-        this.navigationToggle = new ActionBarDrawerToggle(this, this.drawerLayout, R.string.application, R.string.application);
-        this.navigationToggle.setDrawerIndicatorEnabled(true);
-        this.drawerLayout.setDrawerListener(this.navigationToggle);
+        this.actionBarDrawerToggle = new ActionBarDrawerToggle(this, this.drawerLayout, R.string.application, R.string.application);
+        this.actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        this.drawerLayout.setDrawerListener(this.actionBarDrawerToggle);
     }
 
     private void setupRoutines() {
@@ -97,35 +93,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        this.navigationToggle.syncState();
+        this.actionBarDrawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(final Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        this.navigationToggle.onConfigurationChanged(configuration);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        this.getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        if (this.navigationToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        switch (item.getItemId()) {
-            case R.id.activities:
-                this.startActivity(new Intent(this, ActivitiesActivity.class));
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
+        this.actionBarDrawerToggle.onConfigurationChanged(configuration);
     }
 }

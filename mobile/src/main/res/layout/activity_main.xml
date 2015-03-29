@@ -13,6 +13,7 @@
 
             <ImageView
                 android:id="@+id/header"
+                android:contentDescription="@string/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -37,7 +38,7 @@
                 android:id="@+id/action_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|bottom"
+                android:layout_gravity="end|bottom"
                 android:layout_margin="@dimen/standard_margin"
                 android:src="@drawable/ic_action_content_edit" />
 
@@ -49,6 +50,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:layout_marginRight="@dimen/navigation_drawer_right_margin"
+            android:layout_marginEnd="@dimen/navigation_drawer_right_margin"
             android:background="@color/background"
             android:choiceMode="singleChoice"
             android:divider="@color/dividers"
