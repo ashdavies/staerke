@@ -1,4 +1,4 @@
-package com.chaos.starke.core;
+package com.chaos.stark.core;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
-import com.chaos.starke.R;
-import com.chaos.starke.adapters.ActivityAdapter;
-import com.chaos.starke.dialogs.CreateActivityDialog;
-import com.chaos.starke.models.Activity;
-import com.chaos.starke.models.Routine;
+import com.chaos.stark.R;
+import com.chaos.stark.adapters.ActivityAdapter;
+import com.chaos.stark.dialogs.CreateActivityDialog;
+import com.chaos.stark.models.Activity;
+import com.chaos.stark.models.Routine;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
@@ -34,7 +34,7 @@ public class RoutineActivity extends BaseActivity implements OnClickListener {
 
         this.routine = this.getRoutineFromIntent(this.getIntent());
         this.setTitle(this.routine.name);
-        
+
         this.actionButton.setOnClickListener(this);
 
         final ActivityAdapter activityAdapter = new ActivityAdapter(this, this.getActivitiesForRoutine(this.routine));

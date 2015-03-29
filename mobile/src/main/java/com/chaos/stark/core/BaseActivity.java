@@ -1,4 +1,4 @@
-package com.chaos.starke.core;
+package com.chaos.stark.core;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;

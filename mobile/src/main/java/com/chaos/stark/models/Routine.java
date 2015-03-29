@@ -1,6 +1,6 @@
-package com.chaos.starke.models;
+package com.chaos.stark.models;
 
-import com.chaos.starke.R;
+import com.chaos.stark.R;
 import com.orm.SugarRecord;
 
 public class Routine extends SugarRecord<Routine> {

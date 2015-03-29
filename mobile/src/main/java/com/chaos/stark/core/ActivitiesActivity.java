@@ -1,4 +1,4 @@
-package com.chaos.starke.core;
+package com.chaos.stark.core;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,12 +7,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.chaos.starke.R;
-import com.chaos.starke.adapters.ActionAdapter;
-import com.chaos.starke.adapters.items.ActionEntry;
-import com.chaos.starke.adapters.items.ActionHeader;
-import com.chaos.starke.adapters.items.ActionInterface;
-import com.chaos.starke.models.Action;
+import com.chaos.stark.R;
+import com.chaos.stark.adapters.ActionAdapter;
+import com.chaos.stark.adapters.items.ActionEntry;
+import com.chaos.stark.adapters.items.ActionHeader;
+import com.chaos.stark.adapters.items.ActionInterface;
+import com.chaos.stark.models.Action;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.MessageEvent;

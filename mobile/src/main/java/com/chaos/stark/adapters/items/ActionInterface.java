@@ -1,4 +1,4 @@
-package com.chaos.starke.adapters.items;
+package com.chaos.stark.adapters.items;
 
 import android.view.LayoutInflater;
 import android.view.View;

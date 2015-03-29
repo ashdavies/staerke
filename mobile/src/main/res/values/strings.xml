@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="application">Starke Trainer</string>
+    <string name="application">Stark Trainer</string>
     <string name="description">Strength Training and Fitness Tracker</string>
 
     <string name="activity_routine">Routines</string>
@@ -11,7 +11,7 @@
     <string name="fragment_title_favourites">My Routines</string>
 
     <string name="notification_tracking_workout">Tracking Workout</string>
-    <string name="notification_tracking_workout_text">Starke is tracking your workout</string>
+    <string name="notification_tracking_workout_text">Stark is tracking your workout</string>
 
     <string name="dialog_title_create_routine">Create Routine</string>
     <string name="dialog_create_routine_name">Routine Name</string>

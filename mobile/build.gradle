@@ -6,7 +6,7 @@ android {
     buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
-        applicationId 'com.chaos.starke'
+        applicationId 'com.chaos.stark'
 
         minSdkVersion project.minSdkVersion
         targetSdkVersion project.targetSdkVersion

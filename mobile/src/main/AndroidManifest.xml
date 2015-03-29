@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.chaos.starke">
+    package="com.chaos.stark">
 
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher_square"
         android:label="@string/application"
-        android:theme="@style/Theme.Starke"
+        android:theme="@style/Theme.Stark"
         tools:replace="android:icon,android:label">
 
         <meta-data
             android:name="DATABASE"
-            android:value="starke.db" />
+            android:value="stark.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />
@@ -22,7 +22,7 @@
             android:value="true" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="com.chaos.starke" />
+            android:value="com.chaos.stark" />
 
         <meta-data
             android:name="com.google.android.gms.version"
