@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height">
+    android:layout_height="@dimen/list_item_height"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/thumbnail"
         android:layout_width="@dimen/list_item_thumbnail"
-        android:layout_height="@dimen/list_item_thumbnail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/standard_margin"
         android:contentDescription="@string/description"
         android:scaleType="centerCrop"
         app:border_color="@color/dividers"
-        app:border_width="2dp" />
+        app:border_width="2dip" />
 
-    <TextView
-        android:id="@+id/name"
-        style="@android:style/TextAppearance.Medium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standard_margin"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center_vertical"
-        android:singleLine="true"
-        android:textColor="@color/primary_text" />
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/category"
-        style="@android:style/TextAppearance.Small"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center_vertical"
-        android:singleLine="true"
-        android:textColor="@color/secondary_text" />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/primary_text"
+            style="@android:style/TextAppearance.Medium" />
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/secondary_text"
+            style="@android:style/TextAppearance.Small" />
+
+    </LinearLayout>
 
     <CheckBox
         android:id="@+id/favourite"
-        style="?android:attr/starStyle"
         android:layout_width="@dimen/list_item_thumbnail"
-        android:layout_height="@dimen/list_item_thumbnail"
-        android:layout_alignParentRight="true"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/standard_margin"
         android:focusable="false"
-        android:gravity="center" />
+        style="?android:attr/starStyle" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -42,9 +42,6 @@ public class ActivityAdapter extends ArrayAdapter<Activity> implements OnItemCli
         final TextView name = (TextView) resultView.findViewById(R.id.name);
         name.setText(activity.name);
 
-        final TextView description = (TextView) resultView.findViewById(R.id.description);
-        description.setText(activity.weight + " Kg x " + activity.repetitions + " x " + activity.sets);
-
         return resultView;
     }
 
