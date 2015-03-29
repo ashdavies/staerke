@@ -2,8 +2,6 @@ package com.chaos.staerke.core;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.ListView;
 
@@ -25,34 +23,35 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class ActivitiesActivity extends ActionBarActivity implements GoogleApiClient.ConnectionCallbacks {
+import butterknife.InjectView;
+
+public class ActivitiesActivity extends BaseActivity implements GoogleApiClient.ConnectionCallbacks {
     private final ActivitiesActivity context = this;
     private GoogleApiClient googleApiClient;
 
     private ActionAdapter adapter;
     private List<ActionInterface> items;
+
+    @InjectView(R.id.list)
     private ListView list;
 
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_activities);
 
-        this.setupActionBar(this.getSupportActionBar());
         this.setupActivities();
 
         this.setupWearListener(this);
     }
 
-    private void setupActionBar(final ActionBar actionBar) {
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+    @Override
+    public int onCreateViewId() {
+        return R.layout.activity_activities;
     }
 
     private void setupActivities() {
         final SimpleDateFormat format = new SimpleDateFormat("cccc dd LLLL", Locale.GERMANY);
 
         this.items = new ArrayList<>();
-        this.list = (ListView) findViewById(R.id.list);
         final List<Action> actions = Select.from(Action.class).orderBy("date DESC").list();
         long last = 0;
 
