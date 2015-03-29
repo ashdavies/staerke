@@ -19,25 +19,35 @@ import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
-public class MainActivity extends BaseActivity {
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final long NO_ROUTINES = 0;
 
-    private FloatingActionButton actionButton;
+    @InjectView(R.id.action_button)
+    protected FloatingActionButton actionButton;
+
+    @InjectView(R.id.navigation_list)
+    protected ListView navigationList;
+
+    @InjectView(R.id.drawer_layout)
+    protected DrawerLayout drawerLayout;
+
+    @InjectView(R.id.routines)
+    protected ListView routineListView;
 
     private RoutineAdapter routineAdapter;
-    private ListView routineListView;
-
     private NavigationAdapter navigationAdapter;
+
     private ActionBarDrawerToggle navigationToggle;
-    private DrawerLayout navigationLayout;
-    private ListView navigationList;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_main);
+        
+        this.actionButton.setOnClickListener(this);
 
-        this.setupActionButton();
         this.setupNavigation();
         this.setupRoutines();
     }
@@ -47,34 +57,26 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    private void setupActionButton() {
-        this.actionButton = (FloatingActionButton) findViewById(R.id.action_button);
-        this.actionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                CreateRoutineDialog dialog = new CreateRoutineDialog();
-                dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
-            }
-        });
+    @Override
+    public void onClick(final View view) {
+        final CreateRoutineDialog dialog = new CreateRoutineDialog();
+        dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
     }
 
     private void setupNavigation() {
         this.navigationAdapter = new NavigationAdapter(this);
         this.navigationAdapter.addCategories(Routine.Category.values());
 
-        this.navigationList = (ListView) findViewById(R.id.navigation_drawer);
         this.navigationList.setAdapter(this.navigationAdapter);
         this.navigationList.setOnItemClickListener(this.navigationAdapter);
 
-        this.navigationLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        this.navigationToggle = new ActionBarDrawerToggle(this, this.navigationLayout, R.string.application, R.string.application);
+        this.navigationToggle = new ActionBarDrawerToggle(this, this.drawerLayout, R.string.application, R.string.application);
         this.navigationToggle.setDrawerIndicatorEnabled(true);
-        this.navigationLayout.setDrawerListener(this.navigationToggle);
+        this.drawerLayout.setDrawerListener(this.navigationToggle);
     }
 
     private void setupRoutines() {
         this.routineAdapter = new RoutineAdapter(this);
-        this.routineListView = (ListView) findViewById(R.id.routines);
         this.routineListView.setOnItemClickListener(this.routineAdapter);
         this.routineListView.setAdapter(this.routineAdapter);
         this.routineListView.setOnTouchListener(new ShowHideOnScroll(this.actionButton));
