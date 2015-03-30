@@ -2,44 +2,50 @@ package com.chaos.staerke.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.SeekBar;
 
 public class VerticalSeekBar extends SeekBar {
-
-    public VerticalSeekBar(Context context) {
+    public VerticalSeekBar(final Context context) {
         super(context);
     }
 
-    public VerticalSeekBar(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
-
-    public VerticalSeekBar(Context context, AttributeSet attrs) {
+    public VerticalSeekBar(final Context context, final AttributeSet attrs) {
         super(context, attrs);
     }
 
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    public VerticalSeekBar(final Context context, final AttributeSet attrs, final int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    public void setBounds(final int step, final int max) {
+        this.setMax(max);
+        this.incrementProgressBy(step);
+        this.setProgress(0);
+    }
+
+    protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
         super.onSizeChanged(h, w, oldh, oldw);
     }
 
     @Override
-    protected synchronized void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(heightMeasureSpec, widthMeasureSpec);
-        setMeasuredDimension(getMeasuredHeight(), getMeasuredWidth());
+    protected synchronized void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        this.setMeasuredDimension(getMeasuredHeight(), getMeasuredWidth());
     }
 
-    protected void onDraw(Canvas c) {
-        c.rotate(-90);
-        c.translate(-getHeight(), 0);
+    protected void onDraw(@NonNull final Canvas canvas) {
+        canvas.rotate(-90);
+        canvas.translate(-getHeight(), 0);
 
-        super.onDraw(c);
+        super.onDraw(canvas);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (!isEnabled()) {
+    public boolean onTouchEvent(@NonNull final MotionEvent event) {
+        if (!this.isEnabled()) {
             return false;
         }
 
