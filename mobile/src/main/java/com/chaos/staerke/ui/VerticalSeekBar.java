@@ -21,9 +21,9 @@ public class VerticalSeekBar extends SeekBar {
     }
 
     public void setBounds(final int step, final int max) {
-        //this.setMax(max);
-        //this.incrementProgressBy(step);
-        //this.setProgress(0);
+        this.setMax(max);
+        this.incrementProgressBy(step);
+        this.setProgress(0);
     }
 
     protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {

@@ -29,6 +29,7 @@
 
     <style name="Theme.Staerke.Button" parent="Widget.AppCompat.Light.ActionButton">
         <item name="android:background">@color/accent</item>
+        <item name="colorButtonNormal">@color/accent</item>
         <item name="android:layout_marginLeft">@dimen/standard_margin</item>
         <item name="android:layout_marginTop">@dimen/standard_margin</item>
         <item name="android:layout_marginRight">@dimen/standard_margin</item>
