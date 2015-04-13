@@ -1,11 +1,13 @@
-package com.chaos.staerke.core;
+package com.chaos.staerke.ui;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.chaos.staerke.R;
-import com.chaos.staerke.ui.VerticalSeekBar;
+import com.chaos.staerke.widgets.VerticalSeekBar;
 
 import butterknife.InjectView;
 
@@ -36,7 +38,7 @@ public class TrackingActivity extends BaseActivity implements SeekBar.OnSeekBarC
         weight.setBounds(1, 280);
         weight.setOnSeekBarChangeListener(this);
 
-        repetitions.setBounds(1, 50);
+        repetitions.setBounds(1, 10);
         repetitions.setOnSeekBarChangeListener(this);
 
         sets.setBounds(1, 10);
@@ -75,5 +77,13 @@ public class TrackingActivity extends BaseActivity implements SeekBar.OnSeekBarC
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+     public boolean onCreateOptionsMenu(final Menu menu) {
+        final MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_tracking, menu);
+        
+        return super.onCreateOptionsMenu(menu);
     }
 }

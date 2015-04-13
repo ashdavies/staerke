@@ -1,4 +1,4 @@
-package com.chaos.staerke.ui;
+package com.chaos.staerke.widgets;
 
 import android.content.Context;
 import android.graphics.Canvas;

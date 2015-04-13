@@ -1,4 +1,4 @@
-package com.chaos.staerke.core;
+package com.chaos.staerke.ui;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

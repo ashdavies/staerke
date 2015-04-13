@@ -32,5 +32,6 @@
     <string name="action_edit">Edit Activity</string>
     <string name="action_create">Create</string>
     <string name="action_cancel">Cancel</string>
+    <string name="activity_save">Save</string>
 
 </resources>

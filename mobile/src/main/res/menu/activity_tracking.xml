@@ -2,8 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/activities"
-        android:title="@string/activity_activities"
+        android:id="@+id/save"
+        android:title="@string/activity_save"
+        android:icon="@drawable/ic_action_save"
         app:showAsAction="always" />
 
 </menu>

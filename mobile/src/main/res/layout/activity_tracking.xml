@@ -17,7 +17,7 @@
             android:singleLine="true"
             android:text="@string/dialog_create_activity_weight" />
 
-        <com.chaos.staerke.ui.VerticalSeekBar
+        <com.chaos.staerke.widgets.VerticalSeekBar
             android:id="@+id/weight"
             android:layout_width="300dip"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:singleLine="true"
             android:text="@string/dialog_create_activity_repetitions" />
 
-        <com.chaos.staerke.ui.VerticalSeekBar
+        <com.chaos.staerke.widgets.VerticalSeekBar
             android:id="@+id/repetitions"
             android:layout_width="300dip"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:singleLine="true"
             android:text="@string/dialog_create_activity_sets" />
 
-        <com.chaos.staerke.ui.VerticalSeekBar
+        <com.chaos.staerke.widgets.VerticalSeekBar
             android:id="@+id/sets"
             android:layout_width="300dip"
             android:layout_height="wrap_content"

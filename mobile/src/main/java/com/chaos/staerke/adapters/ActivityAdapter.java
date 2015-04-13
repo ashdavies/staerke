@@ -10,8 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.chaos.staerke.R;
-import com.chaos.staerke.core.RoutineActivity;
-import com.chaos.staerke.core.TrackingActivity;
+import com.chaos.staerke.ui.RoutineActivity;
+import com.chaos.staerke.ui.TrackingActivity;
 import com.chaos.staerke.dialogs.CreateActivityDialog;
 import com.chaos.staerke.models.Activity;
 

@@ -29,7 +29,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.chaos.staerke.core.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/application">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,30 +38,30 @@
         </activity>
 
         <activity
-            android:name="com.chaos.staerke.core.RoutineActivity"
+            android:name=".ui.RoutineActivity"
             android:label="@string/application"
-            android:parentActivityName="com.chaos.staerke.core.MainActivity">
+            android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chaos.staerke.core.MainActivity" />
+                android:value=".ui.MainActivity" />
         </activity>
 
         <activity
-            android:name="com.chaos.staerke.core.ActivitiesActivity"
+            android:name=".ui.ActivitiesActivity"
             android:label="@string/activity_activities"
-            android:parentActivityName="com.chaos.staerke.core.MainActivity">
+            android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chaos.staerke.core.MainActivity" />
+                android:value=".ui.MainActivity" />
         </activity>
 
         <activity
-            android:name="com.chaos.staerke.core.TrackingActivity"
+            android:name=".ui.TrackingActivity"
             android:label="@string/activity_tracking"
-            android:parentActivityName="com.chaos.staerke.core.MainActivity">
+            android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chaos.staerke.core.MainActivity" />
+                android:value=".ui.MainActivity" />
         </activity>
 
     </application>

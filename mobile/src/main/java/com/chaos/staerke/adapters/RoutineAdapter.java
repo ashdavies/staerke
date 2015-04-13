@@ -14,7 +14,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.chaos.staerke.R;
-import com.chaos.staerke.core.RoutineActivity;
+import com.chaos.staerke.ui.RoutineActivity;
 import com.chaos.staerke.models.Routine;
 import com.google.gson.Gson;
 
