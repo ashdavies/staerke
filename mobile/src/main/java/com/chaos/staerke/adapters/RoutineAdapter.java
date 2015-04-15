@@ -14,8 +14,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.chaos.staerke.R;
-import com.chaos.staerke.ui.RoutineActivity;
 import com.chaos.staerke.models.Routine;
+import com.chaos.staerke.ui.RoutineActivity;
 import com.google.gson.Gson;
 
 import java.io.InputStreamReader;
@@ -26,8 +26,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RoutineAdapter extends ArrayAdapter<Routine> implements OnItemClickListener {
     private Context context;
 
-    public RoutineAdapter(final Context context, final List<Routine> routines) {
-        super(context, R.layout.card_routine, R.id.name, routines);
+    public RoutineAdapter(final Context context) {
+        super(context, R.layout.card_routine, R.id.name);
         this.context = context;
     }
 

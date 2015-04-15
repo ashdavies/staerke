@@ -35,9 +35,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @InjectView(R.id.routines)
     protected ListView routineListView;
 
-    private RoutineAdapter routineAdapter;
-    private NavigationAdapter navigationAdapter;
-
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
@@ -62,11 +59,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setupNavigation() {
-        this.navigationAdapter = new NavigationAdapter(this);
-        this.navigationAdapter.addCategories(Routine.Category.values());
+        final NavigationAdapter navigationAdapter = new NavigationAdapter(this);
+        navigationAdapter.addCategories(Routine.Category.values());
 
-        this.navigationList.setAdapter(this.navigationAdapter);
-        this.navigationList.setOnItemClickListener(this.navigationAdapter);
+        this.navigationList.setAdapter(navigationAdapter);
+        this.navigationList.setOnItemClickListener(navigationAdapter);
 
         this.actionBarDrawerToggle = new ActionBarDrawerToggle(this, this.drawerLayout, R.string.application, R.string.application);
         this.actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
@@ -74,17 +71,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setupRoutines() {
-        this.routineAdapter = new RoutineAdapter(this, new ArrayList<Routine>());
-        this.routineListView.setOnItemClickListener(this.routineAdapter);
-        this.routineListView.setAdapter(this.routineAdapter);
+        final RoutineAdapter routineAdapter = new RoutineAdapter(this);
+
+        this.routineListView.setOnItemClickListener(routineAdapter);
+        this.routineListView.setAdapter(routineAdapter);
         this.routineListView.setOnTouchListener(new ShowHideOnScroll(this.actionButton));
 
         if (this.hasNoRoutines()) {
-            this.routineAdapter.importFromResource(new Gson(), R.raw.routines);
+            routineAdapter.importFromResource(new Gson(), R.raw.routines);
         }
 
         for (final Routine.Category category : Routine.Category.values()) {
-            this.routineAdapter.addRoutinesFromCategory(category);
+            routineAdapter.addRoutinesFromCategory(category);
         }
     }
 
