@@ -17,14 +17,20 @@ import com.chaos.staerke.models.Activity;
 import com.chaos.staerke.models.Routine;
 
 public class CreateActivityDialog extends DialogFragment {
-    private Routine routine;
+    private final Routine routine;
     private Activity activity;
+
+    private ActivityCreatedListener activityCreatedListener;
 
     private Spinner name;
 
     public CreateActivityDialog(final Routine routine, final Activity activity) {
         this.routine = routine;
         this.activity = activity;
+    }
+
+    public void setActivityCreatedListener(final ActivityCreatedListener activityCreatedListener) {
+        this.activityCreatedListener = activityCreatedListener;
     }
 
     @NonNull
@@ -37,7 +43,7 @@ public class CreateActivityDialog extends DialogFragment {
 
         this.name = (Spinner) view.findViewById(R.id.name);
         final String[] activities = getResources().getStringArray(R.array.activities);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, activities);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, activities);
         this.name.setAdapter(adapter);
 
         if (this.activity != null) {
@@ -63,6 +69,9 @@ public class CreateActivityDialog extends DialogFragment {
                         BackupManager backupManager = new BackupManager(getActivity());
                         backupManager.dataChanged();
 
+                        if (activityCreatedListener != null) {
+                            activityCreatedListener.onActivityCreatedListener(activity);
+                        }
                     }
                 })
                 .setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
@@ -74,5 +83,9 @@ public class CreateActivityDialog extends DialogFragment {
 
         // Create the AlertDialog object and return it
         return builder.create();
+    }
+
+    public interface ActivityCreatedListener {
+        public void onActivityCreatedListener(Activity activity);
     }
 }

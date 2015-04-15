@@ -26,6 +26,7 @@ public class RoutineActivity extends BaseActivity implements OnClickListener {
     @InjectView(R.id.action_button)
     protected FloatingActionButton actionButton;
 
+    private ActivityAdapter activityAdapter;
     private Routine routine;
 
     @Override
@@ -37,7 +38,7 @@ public class RoutineActivity extends BaseActivity implements OnClickListener {
 
         this.actionButton.setOnClickListener(this);
 
-        final ActivityAdapter activityAdapter = new ActivityAdapter(this, this.getActivitiesForRoutine(this.routine));
+        this.activityAdapter = new ActivityAdapter(this, this.getActivitiesForRoutine(this.routine));
         this.setupActivitiesList(activityAdapter);
     }
 
@@ -49,6 +50,14 @@ public class RoutineActivity extends BaseActivity implements OnClickListener {
     @Override
     public void onClick(final View view) {
         final CreateActivityDialog dialog = new CreateActivityDialog(RoutineActivity.this.routine, null);
+
+        dialog.setActivityCreatedListener(new CreateActivityDialog.ActivityCreatedListener() {
+            @Override
+            public void onActivityCreatedListener(final Activity activity) {
+                activityAdapter.add(activity);
+            }
+        });
+        
         dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
     }
 
