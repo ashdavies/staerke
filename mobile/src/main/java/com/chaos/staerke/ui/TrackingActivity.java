@@ -83,7 +83,7 @@ public class TrackingActivity extends BaseActivity implements SeekBar.OnSeekBarC
      public boolean onCreateOptionsMenu(final Menu menu) {
         final MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.activity_tracking, menu);
-        
+
         return super.onCreateOptionsMenu(menu);
     }
 }
