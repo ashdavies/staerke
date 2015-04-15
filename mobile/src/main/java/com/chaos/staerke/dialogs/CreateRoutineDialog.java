@@ -20,6 +20,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class CreateRoutineDialog extends DialogFragment {
+    private RoutineCreatedListener routineCreatedListener;
+
+    public void setRoutineCreatedListener(final RoutineCreatedListener routineCreatedListener) {
+        this.routineCreatedListener = routineCreatedListener;
+    }
 
     @NonNull
     @Override
@@ -48,6 +53,10 @@ public class CreateRoutineDialog extends DialogFragment {
                         final Routine routine = new Routine(name, category);
                         routine.save();
 
+                        if (routineCreatedListener != null) {
+                            routineCreatedListener.onRoutineCreated(routine);
+                        }
+
                     }
                 })
                 .setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
@@ -58,5 +67,9 @@ public class CreateRoutineDialog extends DialogFragment {
                 });
 
         return builder.create();
+    }
+
+    public interface RoutineCreatedListener {
+        public void onRoutineCreated(Routine routine);
     }
 }

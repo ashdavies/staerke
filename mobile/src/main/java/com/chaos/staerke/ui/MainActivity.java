@@ -16,8 +16,6 @@ import com.google.gson.Gson;
 import com.shamanland.fab.FloatingActionButton;
 import com.shamanland.fab.ShowHideOnScroll;
 
-import java.util.ArrayList;
-
 import butterknife.InjectView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -34,6 +32,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.routines)
     protected ListView routineListView;
+
+    private RoutineAdapter routineAdapter;
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
@@ -55,6 +55,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(final View view) {
         final CreateRoutineDialog dialog = new CreateRoutineDialog();
+
+        dialog.setRoutineCreatedListener(new CreateRoutineDialog.RoutineCreatedListener() {
+            @Override
+            public void onRoutineCreated(final Routine routine) {
+                routineAdapter.add(routine);
+            }
+        });
+
         dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
     }
 
@@ -71,18 +79,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setupRoutines() {
-        final RoutineAdapter routineAdapter = new RoutineAdapter(this);
-
-        this.routineListView.setOnItemClickListener(routineAdapter);
-        this.routineListView.setAdapter(routineAdapter);
+        this.routineAdapter = new RoutineAdapter(this);
+        this.routineListView.setOnItemClickListener(this.routineAdapter);
+        this.routineListView.setAdapter(this.routineAdapter);
         this.routineListView.setOnTouchListener(new ShowHideOnScroll(this.actionButton));
 
         if (this.hasNoRoutines()) {
-            routineAdapter.importFromResource(new Gson(), R.raw.routines);
+            this.routineAdapter.importFromResource(new Gson(), R.raw.routines);
         }
 
         for (final Routine.Category category : Routine.Category.values()) {
-            routineAdapter.addRoutinesFromCategory(category);
+            this.routineAdapter.addRoutinesFromCategory(category);
         }
     }
 
